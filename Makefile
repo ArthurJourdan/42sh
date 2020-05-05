@@ -83,7 +83,7 @@ SRCTESTS	=	${SRCDIR}.c	\
 
 OBJ		=       $(SRC:.c=.o)
 
-NAME		=	mysh
+NAME		=	42sh
 
 SRC_LIB		=	linked_list	\
 				print		\
