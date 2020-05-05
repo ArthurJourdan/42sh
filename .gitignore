@@ -1,0 +1,37 @@
+# COMPILED
+*.o
+*.a
+*.gcda
+*.gcno
+# !COMPILED
+
+# BINARY
+a.out
+binaryname
+unit_tests
+mysh
+# !BINARY
+
+# TEMPORARY
+*#*
+*~
+*.vscode*
+# !TEMPORARY
+
+# MY_THINGS
+.notes
+
+file
+log
+oui
+ok
+# MY_THINGS
+
+# ACTUAL PROJECT
+tester.tgz
+README
+tests
+tester.sh
+mouli_freddou
+test_epitech
+# !ACTUAL PROJECT
