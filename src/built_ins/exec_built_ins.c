@@ -36,15 +36,31 @@ int is_built_in(char *instructions)
     return -1;
 }
 
-bool exec_built_ins(char *instructions, env_memory_t *env_mem)
+static bool check_next_cmd(int type, command_t *next)
 {
-    int index = is_built_in(instructions);
+    if (!next)
+        return false;
+    if (type == ENV)
+        return false;
+    if (next->type == SEMICOLON) {
+        return false;
+    }
+    return true;
+}
+
+bool exec_built_ins(char *instructions, env_memory_t *env_mem, command_t *next)
+{
+    int type = is_built_in(instructions);
     char **command = NULL;
 
-    if (index != -1) {
-        command = my_str_to_word_arr(instructions);
-        built_ins[index].fct(command, env_mem);
-        free_double_char_arr(command);
+    if (type != -1) {
+        if (check_next_cmd(type, next)) {
+            my_dprintf(1, "\n");
+        } else {
+            command = my_str_to_word_arr(instructions);
+            built_ins[type].fct(command, env_mem);
+            free_double_char_arr(command);
+        }
         return true;
     }
     return false;

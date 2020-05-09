@@ -33,7 +33,7 @@ enum built_in_index {
 bool minishell_manager(char **env);
 
 // BUILT INS
-bool exec_built_ins(char *instructions, env_memory_t *env_mem);
+bool exec_built_ins(char *instructions, env_memory_t *env_mem, command_t *next);
 int is_built_in(char *instructions);
 
 // ENV

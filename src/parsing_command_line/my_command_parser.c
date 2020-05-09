@@ -79,6 +79,6 @@ command_t *my_command_parser(char * const line)
         free_command(parsed_command);
         return NULL;
     }
-    rm_useless_cmds(parsed_command);
+    // rm_useless_cmds(parsed_command);
     return parsed_command;
 }

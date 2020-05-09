@@ -30,21 +30,29 @@ static command_t *rm_cmd_prev_sep(command_t *tmp)
 static command_t *check_one_built_in(command_t *tmp)
 {
     enum types_e typ = NONE_TY;
+    bool rm_command = false;
 
+    /*checker des deux cotés en même temps si ls | cd | grep a */
     if (tmp->next) {
         typ = tmp->next->type;
         if (typ == SIMPLE_I || typ == S_REDIRECT || typ == D_REDIRECT) {
-            tmp = rm_cmd_next_sep(tmp);
-            return tmp;
+            free_one_command(tmp->next);
+            rm_command = true;
         }
+
     }
     if (tmp->prev) {
-        typ = tmp->next->type;
+        typ = tmp->prev->type;
         if (typ == SIMPLE_I || typ == S_REDIRECT_IN || typ == D_REDIRECT_IN) {
-            tmp = rm_cmd_prev_sep(tmp);
-            return tmp;
+            free_one_command(tmp->prev);
+            rm_command = true;
         }
     }
+    if (rm_command) {
+        tmp = tmp->next;
+        free_one_command(tmp->prev);
+    }
+
     return tmp;
 }
 
