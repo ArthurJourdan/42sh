@@ -8,9 +8,30 @@
 #include "parsing_command_line.h"
 #include "minishell.h"
 
+void free_one_command(command_t *command)
+{
+    command_t *tmp_prev = NULL;
+    command_t *tmp_next = NULL;
+
+    if (!command)
+        return;
+    if (command->instruction)
+        free(command->instruction);
+    if (command->prev) {
+        tmp_prev = command->prev;
+        tmp_prev->next = command->next;
+    }
+    if (command->next) {
+        tmp_next = command->next;
+        tmp_next->prev = command->prev;
+    }
+    free(command);
+}
+
 void free_command(command_t *command)
 {
     while (command) {
+        if (command->instruction)
         free(command->instruction);
         if (command->prev)
             free(command->prev);

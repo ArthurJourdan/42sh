@@ -40,20 +40,38 @@ typedef struct separator {
     ssize_t pos;
 } separator_t;
 
+// READ COMMAND
 void print_prompt(void);
 char *command_read(void);
+// ! READ COMMAND
 
+// PRE ERROR HANDLING
 bool check_exit(char *line);
 bool check_is_nothing(char *line);
+// ! PRE ERROR HANDLING
 
 command_t *my_command_parser(char * const line);
 
+// FILL COMMAND PART
+command_t *fill_cmd_part(char * const line, separator_t next_sep,
+command_t *prev_part);
+
+enum types_e assign_type(command_t *prev_part, char * const instruction);
+// ! FILL COMMAND PART
+
+
+// ERROR HANDLING
 bool parsing_error(command_t *command);
 bool parsing_error_msg(int error_nb);
 bool is_separator(command_t *tmp);
 bool pipe_with_file(command_t *tmp);
 bool missing_file(command_t *tmp);
 
-void free_command(command_t *command);
+command_t *rm_useless_cmds(command_t *command);
+// ! ERROR HANDLING
 
+// FREE
+void free_command(command_t *command);
+void free_one_command(command_t *command);
+// ! FREE
 #endif /* !PARSING_COMMAND_LINE_H */

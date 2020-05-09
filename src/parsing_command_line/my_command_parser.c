@@ -18,7 +18,9 @@ static separator_t separators[] = {
     {">", S_REDIRECT, 0},
     {"<", S_REDIRECT_IN, 0},
     {";", SEMICOLON, 0},
-    {"|", SIMPLE_I ,0}
+    {"|", SIMPLE_I ,0},
+    {"||", DOUBLE_I ,0},
+    {"&&", DOUBLE_E ,0}
 };
 
 static separator_t get_pos_separator(char * const line)
@@ -37,51 +39,6 @@ static separator_t get_pos_separator(char * const line)
         }
     }
     return infos;
-}
-
-static enum types_e assign_type(command_t *prev_part, char * const instruction)
-{
-    enum types_e type = COMMAND;
-
-    if (prev_part) {
-        if (prev_part->type == S_REDIRECT_IN)
-            type = MY_FILE;
-        if (prev_part->type == D_REDIRECT_IN)
-            type = MY_FILE;
-        if (prev_part->type == S_REDIRECT)
-            type = MY_FILE;
-        if (prev_part->type == D_REDIRECT)
-            type = MY_FILE;
-    }
-    if (is_built_in(instruction) != -1)
-        type = BUILT_IN;
-    return type;
-}
-
-static command_t *fill_cmd_part(char * const line, separator_t next_sep,
-command_t *prev_part)
-{
-    command_t *next_part = malloc(sizeof(command_t));
-    char *str_until_sep = NULL;
-
-    if (!next_part)
-        return NULL;
-    next_part->next = NULL;
-    next_part->prev = prev_part;
-    if (next_sep.pos == (-1)) {
-        next_part->instruction = my_strcpy(line);
-        next_part->type = assign_type(prev_part, next_part->instruction);
-        return next_part;
-    } str_until_sep = my_str_cpy_until_str(line, next_sep.sep);
-    if (next_sep.pos == 0 ||
-    my_str_is_chars(str_until_sep + my_strlen(next_sep.sep), 3,
-    next_sep.sep[0], ' ', '\n')) {
-        next_part->instruction = my_strcpy(next_sep.sep);
-        next_part->type = next_sep.type;
-    } else {
-        next_part->instruction = str_until_sep;
-        next_part->type = assign_type(prev_part, next_part->instruction);
-    } return next_part;
 }
 
 static command_t *get_command_line(char * const line)
@@ -122,5 +79,6 @@ command_t *my_command_parser(char * const line)
         free_command(parsed_command);
         return NULL;
     }
+    rm_useless_cmds(parsed_command);
     return parsed_command;
 }

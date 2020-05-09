@@ -13,22 +13,30 @@
 
 static void check_prev_pipes(command_t *tmp, int pipefd[2])
 {
-    if (tmp->prev && tmp->prev->type == SIMPLE_I) {
-        if (tmp->prev->prev && (tmp->prev->prev->type != BUILT_IN ||
-        is_built_in(tmp->prev->prev->instruction) == ENV)) {
-            dup2(pipefd[0], STDIN_FILENO);
-            close(pipefd[0]);
-        }
+    enum built_in_index act_built_in = NONE_BI;
+
+    if (!tmp->prev || tmp->prev->type != SIMPLE_I)
+        return;
+    if (!tmp->prev->prev)
+        return;
+    /*faire une gestion d'erreur avant d'appeller tt ça,
+    genre si cd | then tmp = nex and tmp = next*/
+    act_built_in = is_built_in(tmp->prev->prev->instruction);
+    if (act_built_in == NONE_BI || act_built_in == ENV) {
+        dup2(pipefd[0], STDIN_FILENO);
+        close(pipefd[0]);
     }
 }
 
 static void check_next_pipes(command_t *tmp, int pipefd[2])
 {
-    if (tmp->next && tmp->next->type == SIMPLE_I) {
-        if (tmp->next->next && tmp->next->next->type != BUILT_IN) {
-            dup2(pipefd[1], STDOUT_FILENO);
-            close(pipefd[1]);
-        }
+    if (!tmp->next || tmp->next->type != SIMPLE_I)
+       return;
+    if (!tmp->next->next)
+        return;
+    if (tmp->next->next->type != BUILT_IN) {
+        dup2(pipefd[1], STDOUT_FILENO);
+        close(pipefd[1]);
     }
 }
 
