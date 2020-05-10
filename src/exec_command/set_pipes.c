@@ -32,10 +32,10 @@ static void check_next_pipes(command_t *tmp, int pipefd[2])
        return;
     if (!tmp->next->next)
         return;
-    // if (tmp->next->next->type != BUILT_IN) {
+    if (tmp->next->next->type != BUILT_IN) {
         dup2(pipefd[1], STDOUT_FILENO);
         close(pipefd[1]);
-    // }
+    }
 }
 
 void set_pipes(int pipefd[2][2], command_t *command, int fst_or_sec)
