@@ -9,7 +9,7 @@
 #include "file.h"
 #include "print.h"
 
-#include "minishell.h"
+#include "built_in.h"
 
 static char **unset_env_var_and_val(char **av, char **env)
 {
@@ -25,7 +25,7 @@ static char **unset_env_var_and_val(char **av, char **env)
     return env;
 }
 
-bool unset_env(char **av, env_memory_t *env_m)
+bool unset_env(char **av, memory_t *env_m)
 {
     int ac = my_arrlen(av);
 
@@ -37,7 +37,7 @@ bool unset_env(char **av, env_memory_t *env_m)
     return true;
 }
 
-static bool set_env_error(size_t ac, char **av, env_memory_t *env)
+static bool set_env_error(size_t ac, char **av, memory_t *env)
 {
     if (ac == 1) {
         disp_env(NULL, env);
@@ -74,7 +74,7 @@ static char **set_var_and_value_env(size_t ac, char **av, char **env)
     return env;
 }
 
-bool set_env(char **av, env_memory_t *env_m)
+bool set_env(char **av, memory_t *env_m)
 {
     size_t ac = my_arrlen(av);
 

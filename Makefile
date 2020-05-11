@@ -59,7 +59,6 @@ SRC		=	${SRCDIR}main.c						\
 			$(PARSE)check_exeptions.c			\
 			$(PARSE)parsing_error.c				\
 			$(PARSE)parsing_error_management.c	\
-			$(PARSE)rm_useless_cmd_part.c		\
 			$(PARSE)assign_types.c				\
 			\
 			$(PARSE)free_all.c					\

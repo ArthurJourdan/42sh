@@ -8,9 +8,9 @@
 #include "my.h"
 #include "print.h"
 
-#include "minishell.h"
+#include "built_in.h"
 
-bool disp_env(char **av, env_memory_t *env_m)
+bool disp_env(char **av, memory_t *env_m)
 {
     if (my_arrlen(av) > 1)
         my_dprintf(2, "env: \'%s\': No such file or directory", av[1]);

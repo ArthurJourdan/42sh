@@ -15,7 +15,7 @@ static void exit_error_msg(void)
     my_dprintf(STDERR_FILENO, "exit: Expression Syntax.\n");
 }
 
-bool my_exit(char **av, env_memory_t *env_m)
+bool my_exit(char **av, memory_t *env_m)
 {
     size_t ac = my_arrlen(av);
 

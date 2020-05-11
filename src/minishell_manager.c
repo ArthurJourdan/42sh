@@ -10,12 +10,13 @@
 
 #include "minishell.h"
 #include "parsing_command_line.h"
+#include "built_in.h"
 
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 
-static bool prompt_loop(env_memory_t *env_mem)
+static bool prompt_loop(memory_t *env_mem)
 {
     char *line = NULL;
 
@@ -35,7 +36,7 @@ static bool prompt_loop(env_memory_t *env_mem)
 
 bool minishell_manager(char **env)
 {
-    env_memory_t *env_mem = init_env_memory(env);
+    memory_t *env_mem = init_env_memory(env);
 
     signal(SIGINT, SIG_IGN);
     if (!env_mem)

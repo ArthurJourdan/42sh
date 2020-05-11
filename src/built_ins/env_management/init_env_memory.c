@@ -7,15 +7,16 @@
 
 #include "my.h"
 
-#include "minishell.h"
+#include "built_in.h"
 
-env_memory_t *init_env_memory(char **env)
+memory_t *init_env_memory(char **env)
 {
-    env_memory_t *env_memory = malloc(sizeof(env_memory_t));
+    memory_t *memory = malloc(sizeof(memory_t));
 
-    if (!env_memory)
+    if (!memory)
         return NULL;
-    env_memory->env = double_char_arr_cpy(env, false);
-    env_memory->env_memory = double_char_arr_cpy(env, false);
-    return env_memory;
+    memory->env = double_char_arr_cpy(env, false);
+    memory->env_memory = double_char_arr_cpy(env, false);
+    // memory->aliases = get_aliases();
+    return memory;
 }

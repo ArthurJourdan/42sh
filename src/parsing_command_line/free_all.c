@@ -39,7 +39,7 @@ void free_command(command_t *command)
     }
 }
 
-void free_env_mem(env_memory_t *env_mem)
+void free_env_mem(memory_t *env_mem)
 {
     free_double_char_arr(env_mem->env_memory);
     free_double_char_arr(env_mem->env);

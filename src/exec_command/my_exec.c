@@ -22,7 +22,7 @@ static bool my_exec(char * const command, char **options, char **env)
     return true;
 }
 
-static bool exec_stantard_command(char **instructions,  env_memory_t *env_mem)
+static bool exec_stantard_command(char **instructions,  memory_t *env_mem)
 {
     char **path_arr = path_to_path_arr(env_mem);
     char *command = NULL;
@@ -40,7 +40,7 @@ static bool exec_stantard_command(char **instructions,  env_memory_t *env_mem)
     return true;
 }
 
-bool check_command(command_t *pre_command, env_memory_t *env_mem)
+bool check_command(command_t *pre_command, memory_t *env_mem)
 {
     char **instructions = my_str_to_word_arr(pre_command->instruction);
     bool return_type = false;

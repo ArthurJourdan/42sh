@@ -11,8 +11,9 @@
 
 #include "minishell.h"
 #include "parsing_command_line.h"
+#include "built_in.h"
 
-static void separate_separators(command_t *command, env_memory_t *env_mem,
+static void separate_separators(command_t *command, memory_t *env_mem,
 int pipefd[2][2], int fst_or_sec)
 {
     int which_built_in = is_built_in(command->instruction);
@@ -26,7 +27,7 @@ int pipefd[2][2], int fst_or_sec)
     }
 }
 
-static void forking_pipes(command_t *tmp, env_memory_t *env_mem, \
+static void forking_pipes(command_t *tmp, memory_t *env_mem, \
 int pipefd[2][2], int fst_or_sec)
 {
     int status = 0;
@@ -49,7 +50,7 @@ int pipefd[2][2], int fst_or_sec)
     }
 }
 
-static bool init_pipes(command_t *tmp, env_memory_t *env_mem)
+static bool init_pipes(command_t *tmp, memory_t *env_mem)
 {
     static int pipefd[2][2] = {{-1, -1}, {-1, -1}};
     static int fst_or_sec = 0;
@@ -65,7 +66,7 @@ static bool init_pipes(command_t *tmp, env_memory_t *env_mem)
     return true;
 }
 
-static void launch_separators(command_t *command, env_memory_t *env_mem)
+static void launch_separators(command_t *command, memory_t *env_mem)
 {
     command_t *tmp = command;
 
@@ -83,7 +84,7 @@ static void launch_separators(command_t *command, env_memory_t *env_mem)
     }
 }
 
-bool command_exec(char *line, env_memory_t *env_mem)
+bool command_exec(char *line, memory_t *env_mem)
 {
     command_t *command = my_command_parser(line);
 

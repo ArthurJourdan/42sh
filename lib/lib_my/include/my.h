@@ -16,8 +16,9 @@
 
 #include <errno.h>
 #include <string.h>
-#include <signal.h>
 
+#include <signal.h>
+#include <sys/types.h>
 #include <sys/wait.h>
 
 #define ARRAY_SIZE(x) (sizeof(x) / sizeof(x[0]))
@@ -87,6 +88,7 @@ char *my_strcat_free(char *str1, char *str2);
 char *my_strcat_path(char const *str1, char const *str2);
 char **my_arrcat(char **arr1, char **arr2, bool free);
 char ***my_triple_arrcat(char ***arr1, char ***arr2);
+char *my_strcat_tot(size_t ac, ...);
 char **my_two_str_to_arr(char *str1, char *str2, bool free);
 
 char *my_strcpy(char *str);
@@ -100,14 +102,17 @@ void double_char_arr_dup(char **src, char **new);
 char **add_str_to_arr(char **arr, char *str, bool free_arr, bool free_str);
 char **remove_str_to_arr(char **arr, size_t index_str, bool to_free);
 
+char *my_word_arr_to_str(char **arr);
 char **my_str_to_word_arr(char *str);
 char **my_sep_parser(char * const str, char * const sep);
 
-void sort_arr_alphabetically(char **tetriminos);
+void sort_arr_alphabetically(char **arr);
 char **reverse_double_arr(char **src, bool to_free);
+void reverse_str(char *str);
 
 void replace_char_in_str(char *str, char const old, char new);
 void replace_char_in_arr(char **arr, char const old, char new);
+
 
 void my_memset_str(char *array, int c, size_t len);
 void my_memset_char_arr(char **arr, char *ptr, size_t len);

@@ -75,13 +75,15 @@ SRC     =	$(CHECK)my_strlen.c					\
 			$(MODIF)my_strcpy.c					\
 			$(MODIF)my_double_arr_dup.c			\
 			\
+			$(MODIF)my_word_arr_to_str.c		\
 			$(MODIF)my_str_to_word_arr.c		\
 			$(MODIF)my_sep_parser.c				\
 			\
-			$(MODIF)reverse_arr.c				\
 			$(MODIF)sort_arr_alphabetically.c	\
+			$(MODIF)reverse_arr.c				\
+			$(MODIF)reverse_str.c				\
 			\
-			$(MODIF)replace_char_in_str.c		\
+			$(MODIF)replace_char_in_str.c	\
 			\
 			$(MODIF)my_memset.c					\
 			\
@@ -112,4 +114,4 @@ fclean:
 re:		fclean all
 
 %.o :           %.c
-		@gcc -g $(CFLAGS) -c -o $@ $^ && $(ECHO) -n $(BOLD) $(GREEN)"  [OK] "$(WHITE) || $(ECHO) -n $(BOLD) $(RED)"  [KO] "$(WHITE) && $(ECHO) $(BOLD) $< | rev | cut -d'/' -f 1 | rev
+		@gcc $(CFLAGS) -c -o $@ $^ && $(ECHO) -n $(BOLD) $(GREEN)"  [OK] "$(WHITE) || $(ECHO) -n $(BOLD) $(RED)"  [KO] "$(WHITE) && $(ECHO) $(BOLD) $< | rev | cut -d'/' -f 1 | rev

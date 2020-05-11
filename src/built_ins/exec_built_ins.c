@@ -6,6 +6,7 @@
 */
 
 #include "my.h"
+#include "print.h"
 
 #include "minishell.h"
 #include "parsing_command_line.h"
@@ -48,7 +49,7 @@ static bool check_next_cmd(int type, command_t *next)
     return true;
 }
 
-bool exec_built_ins(char *instructions, env_memory_t *env_mem, command_t *next)
+bool exec_built_ins(char *instructions, memory_t *env_mem, command_t *next)
 {
     int type = is_built_in(instructions);
     char **command = NULL;

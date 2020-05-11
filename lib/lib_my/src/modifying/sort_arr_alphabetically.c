@@ -25,34 +25,34 @@ static bool cmp_ascii_order(char *name1, char *name2)
     return false;
 }
 
-static bool arr_is_sorted(char **tetriminos)
+static bool arr_is_sorted(char **arr)
 {
-    for (size_t a = 1; tetriminos[a]; a++) {
-        if (!cmp_ascii_order(tetriminos[a - 1], tetriminos[a]))
+    for (size_t a = 1; arr[a]; a++) {
+        if (!cmp_ascii_order(arr[a - 1], arr[a]))
             return false;
     }
     return true;
 }
 
-static void bubble_sort(char **tetriminos)
+static void bubble_sort(char **arr)
 {
     size_t index = 0;
     char *tmp = NULL;
 
-    while (tetriminos[++index]) {
-        if (!cmp_ascii_order(tetriminos[index - 1], tetriminos[index])) {
-            tmp = tetriminos[index - 1];
-            tetriminos[index - 1] = tetriminos[index];
-            tetriminos[index] = tmp;
+    while (arr[++index]) {
+        if (!cmp_ascii_order(arr[index - 1], arr[index])) {
+            tmp = arr[index - 1];
+            arr[index - 1] = arr[index];
+            arr[index] = tmp;
         }
     }
 }
 
-void sort_arr_alphabetically(char **tetriminos)
+void sort_arr_alphabetically(char **arr)
 {
-    if (!tetriminos || !tetriminos[0] || !tetriminos[1])
+    if (!arr || !arr[0] || !arr[1])
         return;
-    while (!arr_is_sorted(tetriminos)) {
-        bubble_sort(tetriminos);
+    while (!arr_is_sorted(arr)) {
+        bubble_sort(arr);
     }
 }

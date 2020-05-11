@@ -8,11 +8,11 @@
 #include "my.h"
 #include "file.h"
 
-#include "minishell.h"
+#include "built_in.h"
 
 static char * const PATH = "PATH=";
 
-char **path_to_path_arr(env_memory_t *env_mem)
+char **path_to_path_arr(memory_t *env_mem)
 {
     char *env_path = NULL;
     char **paths = NULL;

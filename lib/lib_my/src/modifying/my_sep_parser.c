@@ -16,7 +16,8 @@ static int count_words_sep(char *str, char * const sep)
     if (str == NULL)
         return 0;
     nb_words += count_occurences_in_str(sep, str);
-    nb_words++;
+    if (nb_words)
+        nb_words++;
     return nb_words;
 }
 

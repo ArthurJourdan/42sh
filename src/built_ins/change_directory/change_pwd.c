@@ -10,6 +10,7 @@
 #include "file.h"
 
 #include "minishell.h"
+#include "built_in.h"
 
 static void apply_oldpwd_on_memory(char **env)
 {
@@ -41,7 +42,7 @@ static void apply_pwd_on_memory(char **env)
     free(buff);
 }
 
-static int apply_change(char *location, env_memory_t *env_m)
+static int apply_change(char *location, memory_t *env_m)
 {
     int line_pwd = get_index_word_begin_in_arr("PWD=", env_m->env);
     int line_old_pwd = get_index_word_begin_in_arr("OLDPWD=", env_m->env);
@@ -64,7 +65,7 @@ static int apply_change(char *location, env_memory_t *env_m)
     return 0;
 }
 
-static bool special_locations(char **av, env_memory_t *env_m)
+static bool special_locations(char **av, memory_t *env_m)
 {
     size_t command_len = my_arrlen(av);
     char *location = NULL;
@@ -89,7 +90,7 @@ static bool special_locations(char **av, env_memory_t *env_m)
     return false;
 }
 
-bool change_location(char **av, env_memory_t *env_m)
+bool change_location(char **av, memory_t *env_m)
 {
     char *buff = NULL;
     char *pwd = getcwd(buff, 0);
