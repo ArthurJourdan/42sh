@@ -44,6 +44,6 @@ void free_env_mem(memory_t *env_mem)
     free_double_char_arr(env_mem->env_memory);
     free_double_char_arr(env_mem->env);
     free_double_char_arr(env_mem->history);
-    free_double_char_arr(env_mem->aliases);
+    // free_double_char_arr(env_mem->aliases);
     free(env_mem);
 }

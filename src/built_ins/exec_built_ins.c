@@ -12,12 +12,12 @@
 #include "parsing_command_line.h"
 
 static const built_ins_t built_ins[] = {
-    {"cd", change_location},
-    {"env", disp_env},
-    {"setenv", set_env},
-    {"unsetenv", unset_env},
-    // {"history", display_history},
-    {"exit", my_exit}
+    {"cd", change_location, CD},
+    {"env", disp_env, ENV},
+    {"setenv", set_env, SETENV},
+    {"unsetenv", unset_env, UNSETENV},
+    {"history", display_history, HISTORY},
+    {"exit", my_exit, EXIT}
 };
 
 int is_built_in(char *instructions)
@@ -43,6 +43,8 @@ static bool check_next_cmd(int type, command_t *next)
     if (!next)
         return false;
     if (type == ENV)
+        return false;
+    if (type == HISTORY)
         return false;
     if (next->type == SEMICOLON) {
         return false;

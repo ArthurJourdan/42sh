@@ -21,18 +21,21 @@ typedef struct {
     char **history;
 } memory_t;
 
-typedef struct built_ins {
-    char * const name;
-    bool (*fct)(char **, memory_t *);
-} built_ins_t;
-
 enum built_in_index {
     NONE_BI = -1,
     CD,
     ENV,
     SETENV,
-    UNSETENV
+    UNSETENV,
+    HISTORY,
+    EXIT
 };
+
+typedef struct built_ins {
+    char * const name;
+    bool (*fct)(char **, memory_t *);
+    enum built_in_index type;
+} built_ins_t;
 
 bool exec_built_ins(char *instructions, memory_t *env_mem, command_t *next);
 int is_built_in(char *instructions);
@@ -52,6 +55,8 @@ bool disp_env(UNUSED char **av, memory_t *env_m);
 
 // HISTORY
 char *check_fill_history(char *line, memory_t *env_mem);
+
+bool display_history(UNUSED char **av, memory_t *env_mem);
 
 char *check_one_mark(char *line, char **history, size_t len_history);
 char *check_two_marks(char *line, char **history, size_t len_history);

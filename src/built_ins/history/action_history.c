@@ -6,6 +6,7 @@
 */
 
 #include "my.h"
+#include "print.h"
 
 #include "minishell.h"
 #include "parsing_command_line.h"
@@ -37,7 +38,7 @@ char *check_one_mark(char *line, char **history, size_t len_history)
             free(line);
             line = my_word_arr_to_str(tmp_cmd);
             free_double_char_arr(tmp_cmd);
-            my_dprintf(1, "%s", line);
+            my_dprintf(STDOUT_FILENO, "%s\n", line);
         }
     }
     return line;
@@ -55,4 +56,14 @@ char *check_two_marks(char *line, char **history, size_t len_history)
     }
     free_double_char_arr(tmp_cmd);
     return line;
+}
+
+bool display_history(UNUSED char **av, memory_t *env_mem)
+{
+    if (!env_mem->history)
+        return false;
+    for (size_t a = 0; env_mem->history[a]; a++) {
+        my_dprintf(STDOUT_FILENO, "\t%i\t%s\n", a, env_mem->history[a]);
+    }
+    return true;
 }
