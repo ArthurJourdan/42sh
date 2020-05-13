@@ -12,10 +12,13 @@
 
 #include "parsing_command_line.h"
 
+#define MAX_LEN_HISTORY (1000)
+
 typedef struct {
     char **env;
     char **env_memory;
     char **aliases;
+    char **history;
 } memory_t;
 
 typedef struct built_ins {
@@ -46,6 +49,13 @@ bool set_env(char **av, memory_t *env_m);
 bool unset_env(char **av, memory_t *env_m);
 bool disp_env(UNUSED char **av, memory_t *env_m);
 // !ENV
+
+// HISTORY
+char *check_fill_history(char *line, memory_t *env_mem);
+
+char *check_one_mark(char *line, char **history, size_t len_history);
+char *check_two_marks(char *line, char **history, size_t len_history);
+// ! HISTORY
 
 // CD
 bool change_location(char **av, memory_t *env_m);

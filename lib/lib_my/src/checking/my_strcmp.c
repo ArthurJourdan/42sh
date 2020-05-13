@@ -26,8 +26,11 @@ bool my_str_n_cmp(char const *str_1, char const *str_2, int len)
 {
     if (!str_1 || !str_2)
         return false;
-    for (int a = 0; a < len; a++)
+    for (int a = 0; a < len; a++) {
+        if (!str_1[a] || !str_2[a])
+            return false;
         if (*(str_1 + a) != *(str_2 + a))
             return false;
+    }
     return true;
 }

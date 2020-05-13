@@ -50,10 +50,10 @@ static char **get_aliases_in_file()
     free_double_char_arr(shrc_file);
     return shrc_file;
 }
+
 char **get_aliases(void)
 {
     char **aliases = NULL;
-
 
     return aliases;
 }

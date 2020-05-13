@@ -18,5 +18,6 @@ memory_t *init_env_memory(char **env)
     memory->env = double_char_arr_cpy(env, false);
     memory->env_memory = double_char_arr_cpy(env, false);
     // memory->aliases = get_aliases();
+    memory->history = NULL;
     return memory;
 }

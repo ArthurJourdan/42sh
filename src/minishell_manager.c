@@ -6,6 +6,7 @@
 */
 
 #include "my.h"
+#include "file.h"
 #include "print.h"
 
 #include "minishell.h"
@@ -15,6 +16,14 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+
+static char *assign_new_commands(char *line, memory_t *env_mem)
+{
+    line = rm_char_in_str(line, '\n');
+    line = check_fill_history(line, env_mem);
+    // line = check_fill_aliases(line, env_mem->aliases);
+    return line;
+}
 
 static bool prompt_loop(memory_t *env_mem)
 {
@@ -27,6 +36,7 @@ static bool prompt_loop(memory_t *env_mem)
             continue;
         if (check_exit(line))
             break;
+        line = assign_new_commands(line, env_mem);
         command_exec(line, env_mem);
         if (line)
             free(line);

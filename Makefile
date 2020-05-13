@@ -45,7 +45,9 @@ BUILTIN	=	$(SRCDIR)built_ins/
 
 ENV		=	$(BUILTIN)env_management/
 
-CD	=	$(BUILTIN)change_directory/
+CD		=	$(BUILTIN)change_directory/
+
+HIST	=	$(BUILTIN)history/
 
 COMMAND	=	$(SRCDIR)exec_command/
 
@@ -73,6 +75,9 @@ SRC		=	${SRCDIR}main.c						\
 			$(BUILTIN)my_exit.c					\
 			\
 			$(CD)change_pwd.c					\
+			\
+			$(HIST)manage_history.c				\
+			$(HIST)action_history.c				\
 			\
 			$(COMMAND)command_exists.c			\
 			$(COMMAND)my_exec.c					\

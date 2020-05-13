@@ -16,6 +16,7 @@ static const built_ins_t built_ins[] = {
     {"env", disp_env},
     {"setenv", set_env},
     {"unsetenv", unset_env},
+    // {"history", display_history},
     {"exit", my_exit}
 };
 

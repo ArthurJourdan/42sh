@@ -10,8 +10,9 @@
 char **add_str_to_arr(char **arr, char *str, bool free_arr, bool free_str)
 {
     size_t len = my_arrlen(arr);
-    char **new_arr = malloc(sizeof(char *) * (len + 2));
+    char **new_arr = NULL;
 
+    new_arr = malloc(sizeof(char *) * (len + 2));
     if (!new_arr)
         return NULL;
     my_memset_char_arr(new_arr, NULL, len + 2);
