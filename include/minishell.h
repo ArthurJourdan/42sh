@@ -13,6 +13,16 @@
 #include "parsing_command_line.h"
 #include "built_in.h"
 
+#define OUT 0
+#define IN 1
+#define IS_WHITESPACE(x) (x == ' ' || x == '\t' || x == '\n')
+
+typedef struct wors_to_array
+{
+    int wc;
+    char *str;
+}word_t;
+
 bool minishell_manager(char **env);
 
 // COMMAND
@@ -32,5 +42,15 @@ bool after_exec_error_msg(char *comd);
 bool understand_status(int status);
 
 // !COMMAND
+//GLOBBING
+
+char *my_strdup(char const *src);
+char *my_strcpy1(char *dest , char const *src);
+char *my_strncpy(char *dest, char const *src, int n);
+char **my_str_to_word_array(char *str);
+word_t countwords(char *str);
+char *is_wildcard(char *cmd);
+int *check_wildcard(char **newcmd);
+//!GLOBBING
 
 #endif /* !MINISHELL_H */

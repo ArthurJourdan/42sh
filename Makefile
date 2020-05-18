@@ -43,6 +43,8 @@ PARSE	=	$(SRCDIR)parsing_command_line/
 
 BUILTIN	=	$(SRCDIR)built_ins/
 
+GLOB	=	$(SRCDIR)globbing/
+
 ENV		=	$(BUILTIN)env_management/
 
 CD		=	$(BUILTIN)change_directory/
@@ -89,6 +91,12 @@ SRC		=	${SRCDIR}main.c						\
 			$(COMMAND)set_pipes.c				\
 			$(COMMAND)set_redirections.c		\
 			$(COMMAND)exec_error_msg.c			\
+			$(GLOB)check_wildcard.c			\
+			$(GLOB)wildcards.c	\
+			$(GLOB)my_strcpy1.c	\
+			$(GLOB)my_strncpy.c	\
+			$(GLOB)my_strdup.c	\
+			$(GLOB)my_str_to_word_array.c	\
 
 SRCTESTS	=	${SRCDIR}.c	\
 
