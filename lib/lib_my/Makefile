@@ -73,6 +73,7 @@ SRC     =	$(CHECK)my_strlen.c					\
 			$(MODIF)remove_str_to_arr.c			\
 			\
 			$(MODIF)my_strcpy.c					\
+			$(MODIF)my_strcpy_quotation.c		\
 			$(MODIF)my_double_arr_dup.c			\
 			\
 			$(MODIF)my_word_arr_to_str.c		\

@@ -14,10 +14,12 @@
 
 #define MAX_LEN_HISTORY (1000)
 
+struct alias;
+
 typedef struct {
     char **env;
     char **env_memory;
-    char **aliases;
+    struct alias **aliases;
     char **history;
 } memory_t;
 
@@ -67,7 +69,17 @@ bool change_location(char **av, memory_t *env_m);
 // !CD
 
 // ALIASES
-char **get_aliases(void);
+typedef struct alias {
+    char *alias;
+    char *substitute;
+} alias_t;
+
+alias_t **get_aliases_from_file(char **shrc_file);
+alias_t **fill_aliases_from_file(char **raw_aliases, size_t nb_aliases);
+
+bool is_alias_correct(char * const alias, char * const substitute);
+
+
 // ! ALIASES
 
 // EXIT

@@ -53,6 +53,7 @@ char *check_two_marks(char *line, char **history, size_t len_history)
         tmp_cmd[0] = my_strcpy(history[len_history]);
         free(line);
         line = my_word_arr_to_str(tmp_cmd);
+        my_dprintf(STDOUT_FILENO, "%s\n", line);
     }
     free_double_char_arr(tmp_cmd);
     return line;

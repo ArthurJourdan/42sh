@@ -49,6 +49,8 @@ CD		=	$(BUILTIN)change_directory/
 
 HIST	=	$(BUILTIN)history/
 
+ALIAS	=	$(BUILTIN)aliases/
+
 COMMAND	=	$(SRCDIR)exec_command/
 
 SRC		=	${SRCDIR}main.c						\
@@ -58,7 +60,6 @@ SRC		=	${SRCDIR}main.c						\
 			$(PARSE)command_read.c				\
 			$(PARSE)my_command_parser.c			\
 			$(PARSE)fill_cmd_part.c				\
-			$(PARSE)check_exeptions.c			\
 			$(PARSE)parsing_error.c				\
 			$(PARSE)parsing_error_management.c	\
 			$(PARSE)assign_types.c				\
@@ -73,6 +74,9 @@ SRC		=	${SRCDIR}main.c						\
 			\
 			$(BUILTIN)exec_built_ins.c			\
 			$(BUILTIN)my_exit.c					\
+			\
+			$(ALIAS)get_aliases_from_file.c		\
+			$(ALIAS)fill_alias_struct.c			\
 			\
 			$(CD)change_pwd.c					\
 			\

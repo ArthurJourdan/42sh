@@ -32,10 +32,8 @@ static bool prompt_loop(memory_t *env_mem)
     while (1) {
         print_prompt();
         line = command_read();
-        if (check_is_nothing(line))
+        if (!line)
             continue;
-        if (check_exit(line))
-            break;
         line = assign_new_commands(line, env_mem);
         command_exec(line, env_mem);
         if (line)

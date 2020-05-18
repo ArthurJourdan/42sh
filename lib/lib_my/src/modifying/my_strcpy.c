@@ -40,8 +40,6 @@ char *my_str_n_cpy(char *str, int size)
         else
             cpy[a] = str[a];
     }
-    cpy[size] = '\0';
-    return cpy;
 }
 
 char *my_str_cpy_until_char(char *str, char c)
@@ -77,28 +75,6 @@ char *my_str_cpy_until_str(char *str, char *cmp)
         return NULL;
     for (int a = 0; a < len; a++) {
         cpy[a] = str[a];
-    }
-    cpy[len] = '\0';
-    return cpy;
-}
-
-char *my_str_cpy_quotation(char *str)
-{
-    int pos = 0;
-    int len = 0;
-    char *cpy = NULL;
-
-    while (str[++pos] != '"');
-    while (str[++pos] != '"')
-        len++;
-    if (pos == my_strlen(str) || !len)
-        return NULL;
-    pos -= len;
-    cpy = malloc(sizeof(char) * (len + 1));
-    if (!cpy)
-        return NULL;
-    for (int a = 0; a < len; a++) {
-        cpy[a] = str[pos + a];
     }
     cpy[len] = '\0';
     return cpy;

@@ -1,1 +1,5 @@
-alias ne "emacs -nw"
+## alias name "command"
+
+alias ne 'emacs -nw'
+alias sl 'ls'
+alias gst "gits tatus"

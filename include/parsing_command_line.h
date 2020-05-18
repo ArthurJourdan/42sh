@@ -45,11 +45,6 @@ void print_prompt(void);
 char *command_read(void);
 // ! READ COMMAND
 
-// PRE ERROR HANDLING
-bool check_exit(char *line);
-bool check_is_nothing(char *line);
-// ! PRE ERROR HANDLING
-
 command_t *my_command_parser(char * const line);
 
 // FILL COMMAND PART
