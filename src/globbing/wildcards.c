@@ -64,6 +64,7 @@ char *get_new_command(char **newcmd, glob_t buff, int *ret)
 
 char *is_wildcard(char *cmd)
 {
+    char *str = my_strdup(cmd);
     char **newcmd = my_str_to_word_array(cmd);
     glob_t buff;
     int *ret;
@@ -71,7 +72,7 @@ char *is_wildcard(char *cmd)
 
     ret = check_wildcard(newcmd);
     if (ret[0] != 0)
-        return cmd;
+        return str;
     ret[0] = glob(newcmd[ret[1]], GLOB_NOCHECK, NULL, &buff);
     cmdv2 = get_new_command(newcmd, buff, ret);
     globfree(&buff);
