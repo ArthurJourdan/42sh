@@ -87,6 +87,27 @@ S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
     }
 }
 
+static void set_double_redirection_from(command_t *tmp)
+{
+    char **fp = NULL;
+    char *line = NULL;
+
+    if (!tmp->next)
+        return;
+    if (is_built_in(tmp->instruction) != ENV && tmp->type == BUILT_IN)
+        return;
+    if (tmp->next->type == D_REDIRECT_IN && tmp->next->next
+        && tmp->next->next->type == MY_FILE) {
+        fp = my_str_to_word_arr(tmp->next->next->instruction);
+        create_fd_redirect(line, fp);
+        tmp->next->instruction = strdup("<");
+        tmp->next->type = S_REDIRECT_IN;
+        set_redirection_from(tmp);
+        unlink(fp[0]);
+        free_double_char_arr(fp);
+    }
+}
+
 void set_redirections(command_t *command)
 {
     command_t *tmp = command;
@@ -94,4 +115,5 @@ void set_redirections(command_t *command)
     set_redirection_to(tmp);
     set_redirection_from(tmp);
     set_double_redirection_to(tmp);
+    set_double_redirection_from(tmp);
 }

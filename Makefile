@@ -89,6 +89,7 @@ SRC		=	${SRCDIR}main.c						\
 			$(COMMAND)my_exec.c					\
 			$(COMMAND)my_pre_exec.c				\
 			$(COMMAND)set_pipes.c				\
+			$(COMMAND)create_fd_redirect.c	\
 			$(COMMAND)set_redirections.c		\
 			$(COMMAND)exec_error_msg.c			\
 			$(GLOB)check_wildcard.c			\

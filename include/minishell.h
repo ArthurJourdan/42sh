@@ -32,7 +32,7 @@ bool check_direct_exec(char *command);
 
 void set_pipes(int pipefd[2][2], command_t *command, int fst_or_sec);
 void set_redirections(command_t *command);
-
+void create_fd_redirect(char *line, char **fp);
 bool command_exec(char *line, memory_t *env_mem);
 
 bool check_command(command_t *pre_command, memory_t *env_mem);
