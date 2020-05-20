@@ -83,6 +83,7 @@ SRC		=	${SRCDIR}main.c						\
 			$(ALIAS)get_alias.c					\
 			$(ALIAS)display_aliases.c			\
 			$(ALIAS)free_aliases.c				\
+			$(ALIAS)check_fill_aliases.c		\
 			\
 			$(CD)change_pwd.c					\
 			\
@@ -96,6 +97,7 @@ SRC		=	${SRCDIR}main.c						\
 			$(COMMAND)create_fd_redirect.c	\
 			$(COMMAND)set_redirections.c		\
 			$(COMMAND)exec_error_msg.c			\
+			\
 			$(GLOB)check_wildcard.c			\
 			$(GLOB)wildcards.c	\
 			$(GLOB)my_strcpy1.c	\

@@ -71,8 +71,6 @@ char **my_n_sep_parser(char * const str, char **seps)
     if (!str || !seps)
         return NULL;
     nb_words = count_occurrences_seps(str, seps);
-    // if (!nb_words)
-        // return NULL;
     word_arr = my_seps_parser(str, seps, nb_words);
     return word_arr;
 }

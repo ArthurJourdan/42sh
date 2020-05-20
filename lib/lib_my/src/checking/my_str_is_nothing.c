@@ -37,7 +37,7 @@ bool my_quotation_is_nothing(char const *str)
 
     if (!str)
         return true;
-    while(a++ != '"');
+    while (a++ != '"');
     while (*(str + a) != '"') {
         if (my_char_is_nothing(*(str + a), true, true, true)) {
             return false;

@@ -85,6 +85,8 @@ alias_t *fill_one_alias(char **raw_alias);
 void display_aliases(alias_t **aliases);
 
 void free_aliases(alias_t **aliases);
+
+char *check_fill_aliases(char *line, alias_t **aliases);
 // ! ALIASES
 
 // EXIT

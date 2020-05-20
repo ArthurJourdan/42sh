@@ -56,7 +56,7 @@ char *my_str_cpy_quotation(char *str, bool double_q, bool simple, bool magic)
     cpy = malloc(sizeof(char) * (len_quotation + 1));
     if (!cpy)
         return NULL;
-    while(str[pos++] != bound_quote);
+    while (str[pos++] != bound_quote);
     for (size_t a = 0; a < len_quotation; a++) {
         cpy[a] = str[pos + a];
     }
