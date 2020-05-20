@@ -81,6 +81,7 @@ SRC		=	${SRCDIR}main.c						\
 			$(ALIAS)fill_alias_struct.c			\
 			$(ALIAS)is_alias_correct.c			\
 			$(ALIAS)get_alias.c					\
+			$(ALIAS)display_aliases.c			\
 			$(ALIAS)free_aliases.c				\
 			\
 			$(CD)change_pwd.c					\

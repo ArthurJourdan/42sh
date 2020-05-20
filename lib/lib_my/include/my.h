@@ -102,8 +102,7 @@ int invert_int(int nb);
 // MODIF
 
 // CONCATENATE
-char *my_strcat(char const *str1, char const *str2);
-char *my_strcat_free(char *str1, char *str2);
+char *my_strcat(char *str1, char *str2, bool free_1, bool free_2);
 char *my_strcat_path(char const *str1, char const *str2);
 char **my_arrcat(char **arr1, char **arr2, bool free);
 char ***my_triple_arrcat(char ***arr1, char ***arr2);

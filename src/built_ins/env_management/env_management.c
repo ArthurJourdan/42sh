@@ -66,9 +66,9 @@ static char **set_var_and_value_env(size_t ac, char **av, char **env)
     char *new_var = NULL;
 
     if (ac >= 2) {
-        new_var = my_strcat(*(av + 1), "=");
+        new_var = my_strcat(*(av + 1), "=", false, false);
         if (ac == 3)
-            new_var = my_strcat(new_var, *(av + 2));
+            new_var = my_strcat(new_var, *(av + 2), true, false);
     }
     env = add_str_to_arr(env, new_var, true, true);
     return env;

@@ -31,6 +31,7 @@ memory_t *init_env_memory(char **env)
     memory->env = double_char_arr_cpy(env, false);
     memory->env_memory = double_char_arr_cpy(env, false);
     memory->history = NULL;
+    memory->aliases = NULL;
     init_with_rc_file(memory);
     return memory;
 }

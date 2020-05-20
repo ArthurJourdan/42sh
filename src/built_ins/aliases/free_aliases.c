@@ -18,6 +18,8 @@ static void free_one_alias(alias_t *alias)
 
 void free_aliases(alias_t **aliases)
 {
+    if (!aliases)
+        return;
     for (size_t a = 0; aliases[a]; a++) {
         free_one_alias(aliases[a]);
     }

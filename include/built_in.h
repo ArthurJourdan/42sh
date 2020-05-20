@@ -74,13 +74,15 @@ typedef struct alias {
     char *substitute;
 } alias_t;
 
-bool is_alias_correct(char * const line);
+bool is_alias_correct(char **line);
 
 alias_t **get_aliases_from_file(char **shrc_file);
 alias_t **fill_aliases_from_file(char **raw_aliases, size_t nb_aliases);
 
 bool get_alias(char **av, memory_t *env_m);
-alias_t *fill_one_alias(char *raw_alias);
+alias_t *fill_one_alias(char **raw_alias);
+
+void display_aliases(alias_t **aliases);
 
 void free_aliases(alias_t **aliases);
 // ! ALIASES

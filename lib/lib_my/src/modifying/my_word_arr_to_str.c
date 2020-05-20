@@ -13,7 +13,7 @@ char *my_word_arr_to_str(char **arr)
     char *str = NULL;
 
     for (size_t a = 0; a < len_arr; a++) {
-        str = my_strcat(str, arr[a]);
+        str = my_strcat(str, arr[a], true, false);
     }
     return str;
 }

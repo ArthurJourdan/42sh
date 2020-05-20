@@ -21,7 +21,7 @@ char *get_entire_file(char const *filepath)
     fd = fopen(filepath, "r");
     ret_get_l = getline(&buff, &zero, fd);
     while (ret_get_l != -1) {
-        entire_file = my_strcat_free(entire_file, buff);
+        entire_file = my_strcat(entire_file, buff, true, true);
         ret_get_l = getline(&buff, &zero, fd);
     }
     free(buff);

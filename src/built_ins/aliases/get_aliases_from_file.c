@@ -13,11 +13,14 @@
 static char **sort_aliases_from_rest(char **shrc_file)
 {
     char **aliases = NULL;
+    char **raw_alias = NULL;
 
     for (size_t a = 0; shrc_file[a]; a++) {
-        if (is_alias_correct(shrc_file[a])) {
+        raw_alias = my_str_to_word_arr(shrc_file[a]);
+        if (is_alias_correct(raw_alias)) {
             aliases = add_str_to_arr(aliases, shrc_file[a], true, false);
         }
+        free_double_char_arr(raw_alias);
     }
     return aliases;
 }

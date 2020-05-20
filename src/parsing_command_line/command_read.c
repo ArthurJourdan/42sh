@@ -33,7 +33,7 @@ char *command_read(void)
         return my_strcpy("exit\n");
     }
     while (!are_quotes_filled(line))
-        line = my_strcat(line, get_one_line());
+        line = my_strcat(line, get_one_line(), true, true);
     return line;
 }
 

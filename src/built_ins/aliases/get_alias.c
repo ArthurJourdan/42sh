@@ -13,6 +13,8 @@ static size_t count_old_aliases(alias_t **old_aliases)
 {
     size_t len = 0;
 
+    if (!old_aliases)
+        return 0;
     while (old_aliases[len])
         len++;
     return len;
@@ -43,17 +45,31 @@ static alias_t **cpy_aliases(alias_t **aliases, size_t nb_aliases)
     return cpy;
 }
 
-bool get_alias(char **av, memory_t *env_m)
+static void register_alias(char **av, memory_t *env_m)
 {
     alias_t **new_aliases = NULL;
     size_t nb_aliases = 0;
-    char *line = my_word_arr_to_str(av);
 
     nb_aliases = count_old_aliases(env_m->aliases);
     new_aliases = cpy_aliases(env_m->aliases, nb_aliases);
-    new_aliases[nb_aliases] = fill_one_alias(line);
-    free_char_to_null(line);
+    new_aliases[nb_aliases] = fill_one_alias(av);
     free_aliases(env_m->aliases);
     env_m->aliases = new_aliases;
+}
+
+bool get_alias(char **av, memory_t *env_m)
+{
+    size_t ac = 0;
+
+    if (!av)
+        return false;
+    ac = my_arrlen(av);
+    if (ac == 1)
+        display_aliases(env_m->aliases);
+    if (ac == 2)
+        return false;
+    if (ac >= 3) {
+        register_alias(av, env_m);
+    }
     return true;
 }
