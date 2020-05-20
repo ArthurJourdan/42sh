@@ -22,7 +22,7 @@ size_t count_occurences_in_str(char * const word, char * const str)
     return occurences;
 }
 
-size_t count_occurences(char * const word, char * const * const arr)
+size_t count_occurences(char * const word, char **arr)
 {
     size_t occurences = 0;
 
@@ -32,4 +32,28 @@ size_t count_occurences(char * const word, char * const * const arr)
         occurences += count_occurences_in_str(word, arr[a]);
     }
     return occurences;
+}
+
+size_t count_occurences_n_words_in_str(char **words, char * const str)
+{
+    size_t occurrences = 0;
+
+    if (!words || !str)
+        return 0;
+    for (size_t a = 0; words[a]; a++) {
+        occurrences += count_occurences_in_str(words[a], str);
+    }
+    return occurrences;
+}
+
+size_t count_occurences_n_words(char **words, char **arr)
+{
+    size_t occurrences = 0;
+
+    if (!words || !arr)
+        return 0;
+    for (size_t a = 0; words[a]; a++) {
+        occurrences += count_occurences(words[a], arr);
+    }
+    return occurrences;
 }

@@ -121,6 +121,8 @@ char *my_str_cpy_quotation(char *str, bool double_q, bool simple, bool magic);
 
 char **double_char_arr_cpy(char **src, bool free);
 void double_char_arr_dup(char **src, char **new);
+
+char *get_nth_word_in_str(char * const str, size_t n);
 // ! CPY
 
 // MANIPULATE ARR
@@ -131,7 +133,11 @@ char **remove_str_to_arr(char **arr, size_t index_str, bool to_free);
 // CHANGE TYPE
 char *my_word_arr_to_str(char **arr);
 char **my_str_to_word_arr(char *str);
+
 char **my_sep_parser(char * const str, char * const sep);
+char **my_n_sep_parser(char * const str, char **seps);
+
+char **arr_from_hard_quote(size_t ac, ...);
 // ! CHANGE TYPE
 
 // CHANGE ORDER

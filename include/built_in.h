@@ -77,7 +77,7 @@ typedef struct alias {
 alias_t **get_aliases_from_file(char **shrc_file);
 alias_t **fill_aliases_from_file(char **raw_aliases, size_t nb_aliases);
 
-bool is_alias_correct(char * const alias, char * const substitute);
+bool is_alias_correct(char * const line);
 
 
 // ! ALIASES

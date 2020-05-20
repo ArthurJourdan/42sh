@@ -78,7 +78,11 @@ SRC     =	$(CHECK)my_strlen.c					\
 			\
 			$(MODIF)my_word_arr_to_str.c		\
 			$(MODIF)my_str_to_word_arr.c		\
+			\
 			$(MODIF)my_sep_parser.c				\
+			$(MODIF)my_n_sep_parser.c			\
+			\
+			$(MODIF)arr_from_hard_quote.c		\
 			\
 			$(MODIF)sort_arr_alphabetically.c	\
 			$(MODIF)reverse_arr.c				\

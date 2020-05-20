@@ -38,7 +38,7 @@ size_t count_words_in_str(char * const str)
     return nb_words;
 }
 
-size_t count_words(char * const * const arr)
+size_t count_words(char **arr)
 {
     size_t words = 0;
 

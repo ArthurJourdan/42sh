@@ -77,6 +77,7 @@ SRC		=	${SRCDIR}main.c						\
 			\
 			$(ALIAS)get_aliases_from_file.c		\
 			$(ALIAS)fill_alias_struct.c			\
+			$(ALIAS)is_alias_correct.c			\
 			\
 			$(CD)change_pwd.c					\
 			\
