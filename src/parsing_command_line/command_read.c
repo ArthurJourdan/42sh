@@ -28,7 +28,8 @@ char *command_read(void)
 
     line = get_one_line();
     if (!line) {
-        my_dprintf(1, "exit\n");
+        if(isatty(STDIN_FILENO) == 1)
+            my_dprintf(1, "exit\n");
         return my_strcpy("exit\n");
     }
     while (!are_quotes_filled(line))

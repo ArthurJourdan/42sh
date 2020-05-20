@@ -30,6 +30,8 @@ char *check_one_mark(char *line, char **history, size_t len_history)
     char **tmp_cmd = my_str_to_word_arr(line);
     char *replace = NULL;
 
+    if (!tmp_cmd)
+        return line;
     if (tmp_cmd[0][0] == '!' && tmp_cmd[0][1] && tmp_cmd[0][1] != '!') {
         replace = compare_history(tmp_cmd[0] + 1, history, len_history);
         if (replace) {
@@ -48,6 +50,8 @@ char *check_two_marks(char *line, char **history, size_t len_history)
 {
     char **tmp_cmd = my_str_to_word_arr(line);
 
+    if (!tmp_cmd)
+        return line;
     if (my_str_n_cmp(tmp_cmd[0], "!!", 2)) {
         free(tmp_cmd[0]);
         tmp_cmd[0] = my_strcpy(history[len_history]);

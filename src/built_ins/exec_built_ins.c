@@ -28,8 +28,6 @@ int is_built_in(char *instructions)
         return -1;
     for (size_t a = 0; a < ARRAY_SIZE(built_ins); a++) {
         if (my_strcmp(command[0], built_ins[a].name)) {
-            if (a == 2 && !command[1])
-                return 1;
             free_double_char_arr(command);
             return a;
         }
@@ -38,33 +36,15 @@ int is_built_in(char *instructions)
     return -1;
 }
 
-static bool check_next_cmd(int type, command_t *next)
-{
-    if (!next)
-        return false;
-    if (type == ENV)
-        return false;
-    if (type == HISTORY)
-        return false;
-    if (next->type == SEMICOLON) {
-        return false;
-    }
-    return true;
-}
-
-bool exec_built_ins(char *instructions, memory_t *env_mem, command_t *next)
+bool exec_built_ins(char *instructions, memory_t *env_mem)
 {
     int type = is_built_in(instructions);
     char **command = NULL;
 
     if (type != -1) {
-        if (check_next_cmd(type, next)) {
-            my_dprintf(1, "\n");
-        } else {
-            command = my_str_to_word_arr(instructions);
-            built_ins[type].fct(command, env_mem);
-            free_double_char_arr(command);
-        }
+        command = my_str_to_word_arr(instructions);
+        built_ins[type].fct(command, env_mem);
+        free_double_char_arr(command);
         return true;
     }
     return false;

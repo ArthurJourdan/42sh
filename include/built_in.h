@@ -39,7 +39,7 @@ typedef struct built_ins {
     enum built_in_index type;
 } built_ins_t;
 
-bool exec_built_ins(char *instructions, memory_t *env_mem, command_t *next);
+bool exec_built_ins(char *instructions, memory_t *env_mem);
 int is_built_in(char *instructions);
 
 // ENV

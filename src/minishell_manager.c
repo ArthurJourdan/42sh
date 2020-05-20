@@ -20,6 +20,7 @@
 static char *assign_new_commands(char *line, memory_t *env_mem)
 {
     line = rm_char_in_str(line, '\n');
+    line = is_wildcard(line);
     line = check_fill_history(line, env_mem);
     // line = check_fill_aliases(line, env_mem->aliases);
     return line;
@@ -46,11 +47,11 @@ bool minishell_manager(char **env)
 {
     memory_t *env_mem = init_env_memory(env);
 
-    signal(SIGINT, SIG_IGN);
+    // signal(SIGINT, SIG_IGN);
     if (!env_mem)
         return false;
     prompt_loop(env_mem);
     free_env_mem(env_mem);
-    signal(SIGINT, SIG_IGN);
+    // signal(SIGINT, SIG_IGN);
     return true;
 }
