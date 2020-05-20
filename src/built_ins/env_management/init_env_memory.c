@@ -18,7 +18,7 @@ static void init_with_rc_file(memory_t *memory)
 
     if (!shrc_file)
         return;
-    // memory->aliases = get_aliases_from_file(shrc_file);
+    memory->aliases = get_aliases_from_file(shrc_file);
     free_double_char_arr(shrc_file);
 }
 

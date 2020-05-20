@@ -2,4 +2,5 @@
 
 alias ne 'emacs -nw'
 alias sl 'ls'
-alias gst "gits tatus"
+alias gst "git status"
+alias a
