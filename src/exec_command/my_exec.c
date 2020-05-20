@@ -48,7 +48,7 @@ bool check_command(command_t *pre_command, memory_t *env_mem)
     if (!instructions || !instructions[0])
         return false;
     if (exec_built_ins(pre_command->instruction, env_mem)) {
-        return_type = true;
+        exit(EXIT_SUCCESS);
     } else if (!access(instructions[0], X_OK)) {
         my_exec(instructions[0], instructions, env_mem->env);
         return_type = true;
