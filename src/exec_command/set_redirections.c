@@ -18,8 +18,6 @@ static void set_redirection_to(command_t *tmp)
 
     if (!tmp->next)
         return;
-    if (is_built_in(tmp->instruction) != ENV && tmp->type == BUILT_IN)
-        return;
     if (tmp->next->type == S_REDIRECT && tmp->next->next
     && tmp->next->next->type == MY_FILE) {
         fp = my_str_to_word_arr(tmp->next->next->instruction);
@@ -45,10 +43,6 @@ static void set_redirection_from(command_t *tmp)
         return;
     if (tmp->next->type == S_REDIRECT_IN && tmp->next->next
     && tmp->next->next->type == MY_FILE) {
-        if (tmp->next->next &&
-        is_built_in(tmp->next->next->instruction) != ENV &&
-         tmp->next->next->type == BUILT_IN)
-            return;
         fp = my_str_to_word_arr(tmp->next->next->instruction);
         if (fp) {
             fd = open(fp[0], O_RDONLY);
@@ -68,8 +62,6 @@ static void set_double_redirection_to(command_t *tmp)
     char **fp = NULL;
 
     if (!tmp->next)
-        return;
-    if (is_built_in(tmp->instruction) != ENV && tmp->type == BUILT_IN)
         return;
     if (tmp->next->type == S_REDIRECT && tmp->next->next
     && tmp->next->next->type == MY_FILE) {

@@ -13,18 +13,13 @@
 
 static void check_prev_pipes(command_t *tmp, int pipefd[2])
 {
-    enum built_in_index act_built_in = NONE_BI;
-
     if (!tmp->prev || tmp->prev->type != SIMPLE_I)
         return;
     if (!tmp->prev->prev)
         return;
-    act_built_in = is_built_in(tmp->prev->prev->instruction);
-    if (act_built_in == NONE_BI || act_built_in == ENV) {
-        if (dup2(pipefd[0], STDIN_FILENO) == -1)
-            exit(EXIT_FAILURE);
-        close(pipefd[0]);
-    }
+    if (dup2(pipefd[0], STDIN_FILENO) == -1)
+        exit(EXIT_FAILURE);
+    close(pipefd[0]);
 }
 
 static void check_next_pipes(command_t *tmp, int pipefd[2])
@@ -33,10 +28,9 @@ static void check_next_pipes(command_t *tmp, int pipefd[2])
        return;
     if (!tmp->next->next)
         return;
-    if (tmp->next->next->type != BUILT_IN) {
-        dup2(pipefd[1], STDOUT_FILENO);
-        close(pipefd[1]);
-    }
+    if (dup2(pipefd[1], STDOUT_FILENO) == -1)
+        exit(EXIT_FAILURE);
+    close(pipefd[1]);
 }
 
 void set_pipes(int pipefd[2][2], command_t *command, int fst_or_sec)

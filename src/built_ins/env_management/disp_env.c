@@ -16,9 +16,7 @@ bool disp_env(char **av, memory_t *env_m)
         my_dprintf(2, "env: \'%s\': No such file or directory", av[1]);
     if (env_m->env) {
         my_dprintf(STDOUT_FILENO, "%A\n", env_m->env);
-        exit(0);
         return true;
     }
-    exit(0);
     return false;
 }
