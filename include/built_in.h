@@ -19,8 +19,8 @@ struct alias;
 typedef struct {
     char **env;
     char **env_memory;
-    struct alias **aliases;
     char **history;
+    struct alias **aliases;
 } memory_t;
 
 enum built_in_index {
@@ -30,6 +30,7 @@ enum built_in_index {
     SETENV,
     UNSETENV,
     HISTORY,
+    ALIAS,
     EXIT
 };
 
@@ -45,7 +46,6 @@ int is_built_in(char *instructions);
 // ENV
 memory_t *init_env_memory(char **env);
 void free_env_mem(memory_t *env_mem);
-
 char **path_to_path_arr(memory_t *env_mem);
 
 char *find_var_in_env(char * const var, char **env);
@@ -74,10 +74,15 @@ typedef struct alias {
     char *substitute;
 } alias_t;
 
+bool is_alias_correct(char * const line);
+
 alias_t **get_aliases_from_file(char **shrc_file);
 alias_t **fill_aliases_from_file(char **raw_aliases, size_t nb_aliases);
 
-bool is_alias_correct(char * const line);
+bool get_alias(char **av, memory_t *env_m);
+alias_t *fill_one_alias(char *raw_alias);
+
+void free_aliases(alias_t **aliases);
 // ! ALIASES
 
 // EXIT

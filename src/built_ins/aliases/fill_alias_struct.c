@@ -10,7 +10,7 @@
 
 #include "built_in.h"
 
-static char *get_substitute(char *raw_alias, char *alias)
+static char *fill_substitute(char *raw_alias, char *alias)
 {
     size_t pos = get_pos_word_end_in_str(alias, raw_alias);
     char *substitute = NULL;
@@ -25,7 +25,7 @@ static char *get_substitute(char *raw_alias, char *alias)
     return substitute;
 }
 
-static char *get_alias(char *raw_alias)
+static char *fill_alias(char *raw_alias)
 {
     char **alias_and_substitute = my_str_to_word_arr(raw_alias);
     char *alias = NULL;
@@ -49,8 +49,8 @@ alias_t *fill_one_alias(char *raw_alias)
     alias_word = get_pos_word_end_in_str("alias", raw_alias);
     while(raw_alias[alias_word] <= ' ')
         alias_word++;
-    alias->alias = get_alias(raw_alias + alias_word);
-    alias->substitute = get_substitute(raw_alias + alias_word, alias->alias);
+    alias->alias = fill_alias(raw_alias + alias_word);
+    alias->substitute = fill_substitute(raw_alias + alias_word, alias->alias);
     return alias;
 }
 

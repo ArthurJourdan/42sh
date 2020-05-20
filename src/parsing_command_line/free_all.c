@@ -5,8 +5,11 @@
 ** free_all.c
 */
 
+#include "my.h"
+
 #include "parsing_command_line.h"
 #include "minishell.h"
+#include "built_in.h"
 
 void free_one_command(command_t *command)
 {
@@ -44,6 +47,6 @@ void free_env_mem(memory_t *env_mem)
     free_double_char_arr(env_mem->env_memory);
     free_double_char_arr(env_mem->env);
     free_double_char_arr(env_mem->history);
-    // free_double_char_arr(env_mem->aliases);
+    free_aliases(env_mem->aliases);
     free(env_mem);
 }

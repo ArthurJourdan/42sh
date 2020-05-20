@@ -10,6 +10,7 @@
 
 #include "minishell.h"
 #include "parsing_command_line.h"
+#include "built_in.h"
 
 static const built_ins_t built_ins[] = {
     {"cd", change_location, CD},
@@ -17,6 +18,7 @@ static const built_ins_t built_ins[] = {
     {"setenv", set_env, SETENV},
     {"unsetenv", unset_env, UNSETENV},
     {"history", display_history, HISTORY},
+    {"alias", get_alias, ALIAS},
     {"exit", my_exit, EXIT}
 };
 
