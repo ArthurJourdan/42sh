@@ -109,14 +109,12 @@ OBJ		=       $(SRC:.c=.o)
 
 NAME		=	42sh
 
-SRC_LIB		=	linked_list	\
-				print		\
+SRC_LIB		=	print		\
 				my			\
 				file		\
 
 LIB_PATHS	=   $(LIBDIR)lib_my				\
 				$(LIBDIR)lib_file			\
-				$(LIBDIR)lib_linked_list	\
 				$(LIBDIR)lib_print			\
 
 LIBRARIES   =	$(SRC_LIB:%=-l%)

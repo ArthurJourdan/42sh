@@ -14,7 +14,6 @@ static char *fill_substitute(char **raw_alias)
 {
     char *substitute = NULL;
     char *tmp_substitute = NULL;
-    char *sec_tmp_substitute = NULL;
 
     for (size_t a = 0; raw_alias[a]; a++) {
         tmp_substitute = my_strcat(tmp_substitute, raw_alias[a], true, false);
