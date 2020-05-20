@@ -21,7 +21,8 @@ static void check_prev_pipes(command_t *tmp, int pipefd[2])
         return;
     act_built_in = is_built_in(tmp->prev->prev->instruction);
     if (act_built_in == NONE_BI || act_built_in == ENV) {
-        dup2(pipefd[0], STDIN_FILENO);
+        if (dup2(pipefd[0], STDIN_FILENO) == -1)
+            exit(EXIT_FAILURE);
         close(pipefd[0]);
     }
 }

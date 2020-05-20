@@ -8,40 +8,28 @@
 #include "my.h"
 #include "file.h"
 
-static int count_words_sep(char *str, char * const sep)
-{
-    int a = 0;
-    int nb_words = 0;
-
-    if (str == NULL)
-        return 0;
-    nb_words += count_occurences_in_str(sep, str);
-    if (nb_words)
-        nb_words++;
-    return nb_words;
-}
-
-static char *fill_word_arr(char * const str, char * const sep, int *pos_in_str)
+static char *fill_arr(char * const str, char * const sep, size_t *pos_in_str)
 {
     char *act_word = NULL;
 
     act_word = my_str_cpy_until_str(str + *(pos_in_str), sep);
-    *(pos_in_str) += my_strlen(act_word) + 1;
+    *(pos_in_str) += my_strlen(act_word) + my_strlen(sep);
     return act_word;
 }
 
 char **my_sep_parser(char * const str, char * const sep)
 {
-    int pos_in_str = 0;
-    int wich_arr = 0;
     char **word_arr = NULL;
     char *act_word = NULL;
-    int nb_words = count_words_sep(str, sep);
+    size_t pos_in_str = 0;
+    size_t wich_arr = 0;
+    size_t nb_words = 0;
 
-    if (!nb_words)
+    if (!str || !sep)
         return NULL;
+    nb_words = count_occurences_in_str(sep, str) + 1;
     while (wich_arr < nb_words) {
-        act_word = fill_word_arr(str, sep, &pos_in_str);
+        act_word = fill_arr(str, sep, &pos_in_str);
         word_arr = add_str_to_arr(word_arr, act_word, true, true);
         wich_arr++;
     }

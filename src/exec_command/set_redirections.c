@@ -29,7 +29,8 @@ static void set_redirection_to(command_t *tmp)
             free_double_char_arr(fp);
         }
         if (fd != -1) {
-            dup2(fd, STDOUT_FILENO);
+            if (dup2(fd, STDOUT_FILENO) == -1)
+                exit(EXIT_FAILURE);
             close(fd);
         }
     }
@@ -54,7 +55,8 @@ static void set_redirection_from(command_t *tmp)
             free_double_char_arr(fp);
         }
         if (fd != -1) {
-            dup2(fd, STDIN_FILENO);
+            if(dup2(fd, STDIN_FILENO) == -1)
+                exit(EXIT_FAILURE);
             close(fd);
         }
     }
@@ -78,7 +80,8 @@ S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
             free_double_char_arr(fp);
         }
         if (fd != -1) {
-            dup2(fd, STDOUT_FILENO);
+            if (dup2(fd, STDOUT_FILENO) == -1)
+                exit(EXIT_FAILURE);
             close(fd);
         }
     }

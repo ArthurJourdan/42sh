@@ -59,7 +59,7 @@ static bool init_pipes(command_t *tmp, memory_t *env_mem)
         close(pipefd[fst_or_sec][0]);
         close(pipefd[fst_or_sec][1]);
         perror("pipe");
-        return false;
+        exit(EXIT_FAILURE);
     }
     forking_pipes(tmp, env_mem, pipefd, fst_or_sec);
     fst_or_sec = invert_int(fst_or_sec);
