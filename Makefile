@@ -57,6 +57,8 @@ WHICH	=	$(BUILTIN)which/
 
 WHERE	=	$(BUILTIN)where/
 
+MY_ECHO	=	$(BUILTIN)my_echo/
+
 EXIT	=	$(BUILTIN)exit/
 
 COMMAND	=	$(SRCDIR)exec_command/
@@ -101,6 +103,8 @@ SRC		=	${SRCDIR}main.c						\
 			$(WHICH)disp_which.c				\
 			\
 			$(WHERE)disp_where.c				\
+			\
+			$(MY_ECHO)my_echo.c					\
 			\
 			$(COMMAND)command_exists.c			\
 			$(COMMAND)my_pre_exec.c				\

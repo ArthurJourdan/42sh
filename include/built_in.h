@@ -33,6 +33,7 @@ enum built_in_index {
     ALIAS,
     WHICH,
     WHERE,
+    ECHO,
     EXIT
 };
 
@@ -98,6 +99,10 @@ bool disp_which(char **av, memory_t *env_m);
 // WHERE
 bool disp_where(char **av, memory_t *env_m);
 // !WHERE
+
+// ECHO
+bool disp_echo(char **av, N_U memory_t *env_m);
+// !ECHO
 
 // EXIT
 bool my_exit(UNUSED char **av, memory_t *env_m);

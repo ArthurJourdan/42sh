@@ -21,6 +21,7 @@ static const built_ins_t built_ins[] = {
     {"alias", get_alias, ALIAS},
     {"which", disp_which, WHICH},
     {"where", disp_where, WHERE},
+    {"echo", disp_echo, ECHO},
     {"exit", my_exit, EXIT}
 };
 
