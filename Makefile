@@ -153,7 +153,7 @@ pre_building:
 $(NAME):	lib  $(OBJ) pre_building
 			@$(ECHO)
 			@gcc -o  $(NAME) $(OBJ) $(LDFLAGS) \
-			&& $(ECHO) $(BOLD) $(YELLOW)"-> BUILD SUCCESS !"$(DEFAULT) || $(ECHO) $(BOLD) $(RED)"-> BUILD FAILED"$(DEFAULT)
+			&& $(ECHO) $(BOLD) $(GREEN)"-> BUILD SUCCESS !"$(DEFAULT) || $(ECHO) $(BOLD) $(RED)"-> BUILD FAILED"$(DEFAULT)
 
 clean:
 			@for MAKE_PATH in $(LIB_PATHS) ; do \
