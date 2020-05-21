@@ -19,6 +19,8 @@ static const built_ins_t built_ins[] = {
     {"unsetenv", unset_env, UNSETENV},
     {"history", display_history, HISTORY},
     {"alias", get_alias, ALIAS},
+    {"which", disp_which, WHICH},
+    // {"where", disp_where, WHERE},
     {"exit", my_exit, EXIT}
 };
 

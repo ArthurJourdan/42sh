@@ -31,6 +31,8 @@ enum built_in_index {
     UNSETENV,
     HISTORY,
     ALIAS,
+    WHICH,
+    WHERE,
     EXIT
 };
 
@@ -62,7 +64,7 @@ bool display_history(UNUSED char **av, memory_t *env_mem);
 
 char *check_one_mark(char *line, char **history, size_t len_history);
 char *check_two_marks(char *line, char **history, size_t len_history);
-// ! HISTORY
+// !HISTORY
 
 // CD
 bool change_location(char **av, memory_t *env_m);
@@ -87,7 +89,11 @@ void display_aliases(alias_t **aliases);
 void free_aliases(alias_t **aliases);
 
 char *check_fill_aliases(char *line, alias_t **aliases);
-// ! ALIASES
+// !ALIASES
+
+// WHICH
+bool disp_which(char **av, memory_t *env_m);
+// !WHICH
 
 // EXIT
 bool my_exit(UNUSED char **av, memory_t *env_m);

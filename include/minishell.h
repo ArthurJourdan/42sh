@@ -35,15 +35,16 @@ void set_redirections(command_t *command);
 void create_fd_redirect(char *line, char **fp);
 bool command_exec(char *line, memory_t *env_mem);
 
+char *get_command_path(char **instructions, memory_t *env_mem);
+
 bool check_command(command_t *pre_command, memory_t *env_mem);
 
 bool exec_error_msg(char *comd);
 bool after_exec_error_msg(char *comd);
 bool understand_status(int status);
-
 // !COMMAND
-//GLOBBING
 
+//GLOBBING
 char *my_strdup(char const *src);
 char *my_strcpy1(char *dest , char const *src);
 char *my_strncpy(char *dest, char const *src, int n);

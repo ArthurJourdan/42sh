@@ -24,17 +24,11 @@ static bool my_exec(char * const command, char **options, char **env)
 
 static bool exec_stantard_command(char **instructions,  memory_t *env_mem)
 {
-    char **path_arr = path_to_path_arr(env_mem);
     char *command = NULL;
 
-    if (!path_arr)
+    command = get_command_path(instructions, env_mem);
+    if (!command)
         return false;
-    command = command_match(path_arr, instructions[0]);
-    free_double_char_arr(path_arr);
-    if (!command) {
-        exec_error_msg(instructions[0]);
-        return false;
-    }
     if (!my_exec(command, instructions, env_mem->env))
         return false;
     return true;

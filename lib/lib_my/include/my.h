@@ -42,7 +42,7 @@
 #define CONST __attribute__((const))
 #define MALLOC __attribute__((malloc))
 #define NO_RETURN __attribute__((noreturn))
-// ! ATTRIBUTES
+// !ATTRIBUTES
 
 typedef struct {
     int x;
@@ -58,7 +58,7 @@ size_t my_triplearrlen(char **arr[]);
 size_t my_len_tot(char const *str);
 size_t my_int_arr_len(int *arr);
 size_t my_strlen_until_word(char * const str, char * const word);
-// ! LEN
+// !LEN
 
 // IS IT THAT
 bool my_char_is_alpha_num(char const c, bool alpha, bool num, bool up);
@@ -75,7 +75,7 @@ bool my_str_is_chars(char * const str, size_t ac, ...);
 
 bool my_str_has_char(char * const str, char c);
 bool my_str_has_chars(char * const str, size_t ac, ...);
-// ! IS IT THAT
+// !IS IT THAT
 
 bool error_msg(int ac, char **av);
 
@@ -108,7 +108,7 @@ char **my_arrcat(char **arr1, char **arr2, bool free);
 char ***my_triple_arrcat(char ***arr1, char ***arr2);
 char *my_strcat_tot(size_t ac, ...);
 char **my_two_str_to_arr(char *str1, char *str2, bool free);
-// ! CONCATENATE
+// !CONCATENATE
 
 
 // CPY
@@ -122,12 +122,12 @@ char **double_char_arr_cpy(char **src, bool free);
 void double_char_arr_dup(char **src, char **new);
 
 char *get_nth_word_in_str(char * const str, size_t n);
-// ! CPY
+// !CPY
 
 // MANIPULATE ARR
 char **add_str_to_arr(char **arr, char *str, bool free_arr, bool free_str);
 char **remove_str_to_arr(char **arr, size_t index_str, bool to_free);
-// ! MANIPULATE ARR
+// !MANIPULATE ARR
 
 // CHANGE TYPE
 char *my_word_arr_to_str(char **arr);
@@ -137,32 +137,30 @@ char **my_sep_parser(char * const str, char * const sep);
 char **my_n_sep_parser(char * const str, char **seps);
 
 char **arr_from_hard_quote(size_t ac, ...);
-// ! CHANGE TYPE
+// !CHANGE TYPE
 
 // CHANGE ORDER
 void sort_arr_alphabetically(char **arr);
 char **reverse_double_arr(char **src, bool to_free);
 void reverse_str(char *str);
-// ! CHANGE ORDER
+// !CHANGE ORDER
 
 // REPLACE
 void replace_char_in_str(char *str, char const old, char new);
 void replace_char_in_arr(char **arr, char const old, char new);
-// ! REPLACE
+// !REPLACE
 
 // MEMSET
 void my_memset_str(char *array, int c, size_t len);
 void my_memset_char_arr(char **arr, char *ptr, size_t len);
-// ! MEMSET
+// !MEMSET
 
 // !MODIF
 
 // FREE
-
 void free_double_char_arr(char **arr);
 void free_triple_char_arr(char ***arr);
 char *free_char_to_null(char *str);
-
 // !FREE
 
 #endif /*MY_H_*/

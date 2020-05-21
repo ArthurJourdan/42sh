@@ -53,6 +53,10 @@ HIST	=	$(BUILTIN)history/
 
 ALIAS	=	$(BUILTIN)aliases/
 
+WHICH	=	$(BUILTIN)which/
+
+WHERE	=	$(BUILTIN)where/
+
 COMMAND	=	$(SRCDIR)exec_command/
 
 SRC		=	${SRCDIR}main.c						\
@@ -77,6 +81,11 @@ SRC		=	${SRCDIR}main.c						\
 			$(BUILTIN)exec_built_ins.c			\
 			$(BUILTIN)my_exit.c					\
 			\
+			$(CD)change_pwd.c					\
+			\
+			$(HIST)manage_history.c				\
+			$(HIST)action_history.c				\
+			\
 			$(ALIAS)get_aliases_from_file.c		\
 			$(ALIAS)fill_alias_struct.c			\
 			$(ALIAS)is_alias_correct.c			\
@@ -85,16 +94,16 @@ SRC		=	${SRCDIR}main.c						\
 			$(ALIAS)free_aliases.c				\
 			$(ALIAS)check_fill_aliases.c		\
 			\
-			$(CD)change_pwd.c					\
-			\
-			$(HIST)manage_history.c				\
-			$(HIST)action_history.c				\
+			$(WHICH)disp_which.c				\
 			\
 			$(COMMAND)command_exists.c			\
-			$(COMMAND)my_exec.c					\
 			$(COMMAND)my_pre_exec.c				\
+			$(COMMAND)my_exec.c					\
+			\
+			$(COMMAND)get_command_path.c		\
+			\
 			$(COMMAND)set_pipes.c				\
-			$(COMMAND)create_fd_redirect.c	\
+			$(COMMAND)create_fd_redirect.c		\
 			$(COMMAND)set_redirections.c		\
 			$(COMMAND)exec_error_msg.c			\
 			\
