@@ -43,7 +43,7 @@ typedef struct separator {
 // READ COMMAND
 void print_prompt(void);
 char *command_read(void);
-// ! READ COMMAND
+// !READ COMMAND
 
 command_t *my_command_parser(char * const line);
 
@@ -52,7 +52,7 @@ command_t *fill_cmd_part(char * const line, separator_t next_sep,
 command_t *prev_part);
 
 enum types_e assign_type(command_t *prev_part, char * const instruction);
-// ! FILL COMMAND PART
+// !FILL COMMAND PART
 
 
 // ERROR HANDLING
@@ -63,10 +63,11 @@ bool pipe_with_file(command_t *tmp);
 bool missing_file(command_t *tmp);
 
 command_t *rm_useless_cmds(command_t *command);
-// ! ERROR HANDLING
+// !ERROR HANDLING
 
 // FREE
 void free_command(command_t *command);
 void free_one_command(command_t *command);
-// ! FREE
+// !FREE
+
 #endif /* !PARSING_COMMAND_LINE_H */

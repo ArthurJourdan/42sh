@@ -29,12 +29,6 @@ int pipefd[2][2], int fst_or_sec)
     int status = 0;
     pid_t my_pid = -1;
 
-    if (tmp->type == BUILT_IN) {
-        if (!tmp->next || (tmp->next && tmp->next->type <= DOUBLE_I)) {
-            exec_built_ins(tmp->instruction, env_mem);
-            return;
-        }
-    }
     my_pid = fork();
     if (my_pid == -1) {
         return;
@@ -57,6 +51,12 @@ static bool init_pipes(command_t *tmp, memory_t *env_mem)
     static int pipefd[2][2] = {{-1, -1}, {-1, -1}};
     static int fst_or_sec = 0;
 
+    if (is_built_in(tmp->instruction) != -1) {
+        if (!tmp->next || (tmp->next && tmp->next->type <= DOUBLE_I)) {
+            exec_built_ins(tmp->instruction, env_mem);
+            return true;
+        }
+    }
     if (pipe(pipefd[fst_or_sec]) == -1) {
         close(pipefd[fst_or_sec][0]);
         close(pipefd[fst_or_sec][1]);
@@ -68,12 +68,14 @@ static bool init_pipes(command_t *tmp, memory_t *env_mem)
     return true;
 }
 
-static void launch_separators(command_t *command, memory_t *env_mem)
+static void launch_separators(command_t *cmd, memory_t *env_mem)
 {
-    command_t *tmp = command;
+    command_t *tmp = cmd;
 
     while (tmp && tmp->type != SEMICOLON) {
         if (tmp->type == COMMAND || tmp->type == BUILT_IN) {
+            tmp->instruction = check_fill_aliases(tmp->instruction, \
+            env_mem->aliases);
             if (!init_pipes(tmp, env_mem))
                 return;
         }

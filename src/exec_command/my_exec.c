@@ -40,21 +40,28 @@ static bool exec_stantard_command(char **instructions,  memory_t *env_mem)
     return true;
 }
 
-bool check_command(command_t *pre_command, memory_t *env_mem)
+static bool type_cmd(command_t *command, memory_t *env_mem, char **instruct)
 {
-    char **instructions = my_str_to_word_arr(pre_command->instruction);
+    if (exec_built_ins(command->instruction, env_mem)) {
+        exit(EXIT_SUCCESS);
+    } else if (!access(instruct[0], X_OK)) {
+        my_exec(instruct[0], instruct, env_mem->env);
+        return true;
+    } else  {
+        return exec_stantard_command(instruct, env_mem);
+    }
+    return false;
+}
+
+bool check_command(command_t *cmd, memory_t *env_mem)
+{
+    char **instruct = NULL;
     bool return_type = false;
 
-    if (!instructions || !instructions[0])
+    instruct = my_str_to_word_arr(cmd->instruction);
+    if (!instruct || !instruct[0])
         return false;
-    if (exec_built_ins(pre_command->instruction, env_mem)) {
-        exit(EXIT_SUCCESS);
-    } else if (!access(instructions[0], X_OK)) {
-        my_exec(instructions[0], instructions, env_mem->env);
-        return_type = true;
-    } else  {
-        return_type = exec_stantard_command(instructions, env_mem);
-    }
-    free_double_char_arr(instructions);
+    return_type = type_cmd(cmd, env_mem, instruct);
+    free_double_char_arr(instruct);
     return return_type;
 }

@@ -22,7 +22,6 @@ static char *assign_new_commands(char *line, memory_t *env_mem)
     line = rm_char_in_str(line, '\n');
     line = is_wildcard(line);
     line = check_fill_history(line, env_mem);
-    line = check_fill_aliases(line, env_mem->aliases);
     return line;
 }
 
