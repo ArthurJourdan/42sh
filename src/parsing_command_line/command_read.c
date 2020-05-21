@@ -43,10 +43,12 @@ void print_prompt(void)
 {
     char *pwd = NULL;
 
-    pwd = getcwd(pwd, 0);
-    if (pwd) {
-        my_dprintf(1, "%s%s> %s", YELLOW, pwd, DEFAULT);
-        free(pwd);
-    } else
-        my_dprintf(1, "~>");
+    if (isatty(STDIN_FILENO) == 1) {
+        pwd = getcwd(pwd, 0);
+        if (pwd) {
+            my_dprintf(1, "%s%s> %s", YELLOW, pwd, DEFAULT);
+            free(pwd);
+        } else
+            my_dprintf(1, "~>");
+    }
 }
