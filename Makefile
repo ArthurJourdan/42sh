@@ -96,6 +96,8 @@ SRC		=	${SRCDIR}main.c						\
 			\
 			$(WHICH)disp_which.c				\
 			\
+			$(WHERE)disp_where.c				\
+			\
 			$(COMMAND)command_exists.c			\
 			$(COMMAND)my_pre_exec.c				\
 			$(COMMAND)my_exec.c					\

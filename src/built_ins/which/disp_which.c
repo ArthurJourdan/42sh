@@ -19,7 +19,7 @@ bool disp_which(char **av, memory_t *env_m)
         command = get_command_path(av + a, env_m);
         if (!command)
             continue;
-        my_dprintf(1, "%s\n", command);
+        my_dprintf(STDOUT_FILENO, "%s\n", command);
         free(command);
     }
     return true;

@@ -20,7 +20,7 @@ static const built_ins_t built_ins[] = {
     {"history", display_history, HISTORY},
     {"alias", get_alias, ALIAS},
     {"which", disp_which, WHICH},
-    // {"where", disp_where, WHERE},
+    {"where", disp_where, WHERE},
     {"exit", my_exit, EXIT}
 };
 

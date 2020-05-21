@@ -26,6 +26,7 @@ typedef struct wors_to_array
 bool minishell_manager(char **env);
 
 // COMMAND
+char *command_match_one_path(char *path, char * const is_command);
 char *command_match(char **path_arr, char * const is_command);
 
 bool check_direct_exec(char *command);

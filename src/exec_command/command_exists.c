@@ -32,17 +32,28 @@ static bool is_good_folder(char * const command, DIR *actual_dir)
     return false;
 }
 
-char *command_match(char **path_arr, char * const is_command)
+char *command_match_one_path(char *path, char * const is_command)
 {
     DIR *actual_dir = NULL;
 
+    actual_dir = opendir(path);
+    if (!actual_dir)
+        return NULL;
+    if (is_good_folder(is_command, actual_dir)) {
+        return my_strcat_path(path, is_command);
+    }
+    return NULL;
+}
+
+char *command_match(char **path_arr, char * const is_command)
+{
+    char *command = NULL;
+
     for (size_t which_path = 0; path_arr[which_path]; which_path++) {
-        actual_dir = opendir(path_arr[which_path]);
-        if (!actual_dir)
+        command = command_match_one_path(path_arr[which_path], is_command);
+        if (!command)
             continue;
-        if (is_good_folder(is_command, actual_dir)) {
-            return my_strcat_path(path_arr[which_path], is_command);
-        }
+        return command;
     }
     return NULL;
 }

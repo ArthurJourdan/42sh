@@ -95,6 +95,10 @@ char *check_fill_aliases(char *line, alias_t **aliases);
 bool disp_which(char **av, memory_t *env_m);
 // !WHICH
 
+// WHERE
+bool disp_where(char **av, memory_t *env_m);
+// !WHERE
+
 // EXIT
 bool my_exit(UNUSED char **av, memory_t *env_m);
 // !EXIT
