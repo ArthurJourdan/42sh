@@ -48,7 +48,6 @@ static command_t *get_command_line(char * const line)
 
     command_part = fill_cmd_part(line, next_sep, NULL);
     for (ssize_t a = 0; a == -1 || line[a]; ) {
-        my_dprintf(1, "pos == %i\n", next_sep.pos);
         if (next_sep.pos == 0)
             a += my_strlen(next_sep.sep);
         a += next_sep.pos;

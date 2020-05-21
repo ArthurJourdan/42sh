@@ -30,7 +30,6 @@ bool parsing_error(command_t *command)
     if (is_separator(tmp))
         return parsing_error_msg(0);
     while (tmp->next) {
-    my_dprintf(1, " == %i\n", tmp->type);
         if (!missing_file(tmp))
             return parsing_error_msg(2);
         if (is_separator(tmp) && is_separator(tmp->next)) {
