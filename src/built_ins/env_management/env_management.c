@@ -34,7 +34,7 @@ bool unset_env(char **av, memory_t *env_m)
         return true;
     }
     env_m->env = unset_env_var_and_val(av, env_m->env);
-    return true;
+    return false;
 }
 
 static bool set_env_error(size_t ac, char **av, memory_t *env)
@@ -79,12 +79,12 @@ bool set_env(char **av, memory_t *env_m)
     size_t ac = my_arrlen(av);
 
     if (set_env_error(ac, av, env_m))
-        return false;
+        return true;
     if (get_index_word_begin_in_arr(*(av + 1), env_m->env) != - 1) {
         env_m->env = unset_env_var_and_val(av, env_m->env);
         env_m->env_memory = unset_env_var_and_val(av, env_m->env_memory);
     }
     env_m->env = set_var_and_value_env(ac, av, env_m->env);
     env_m->env_memory = set_var_and_value_env(ac, av, env_m->env_memory);
-    return true;
+    return false;
 }

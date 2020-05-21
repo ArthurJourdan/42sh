@@ -71,5 +71,5 @@ bool get_alias(char **av, memory_t *env_m)
     if (ac >= 3) {
         register_alias(av, env_m);
     }
-    return true;
+    return false;
 }

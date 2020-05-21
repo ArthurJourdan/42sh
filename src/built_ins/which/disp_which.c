@@ -14,13 +14,16 @@
 bool disp_which(char **av, memory_t *env_m)
 {
     char *command = NULL;
+    bool return_value = false;
 
     for (size_t a = 1; av[a]; a++) {
         command = get_command_path(av + a, env_m);
-        if (!command)
+        if (!command) {
+            return_value = true;
             continue;
+        }
         my_dprintf(STDOUT_FILENO, "%s\n", command);
         free(command);
     }
-    return true;
+    return return_value;
 }

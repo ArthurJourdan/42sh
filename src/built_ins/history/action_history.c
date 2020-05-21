@@ -70,5 +70,5 @@ bool display_history(UNUSED char **av, memory_t *env_mem)
     for (size_t a = 0; env_mem->history[a]; a++) {
         my_dprintf(STDOUT_FILENO, "\t%i\t%s\n", a, env_mem->history[a]);
     }
-    return true;
+    return false;
 }

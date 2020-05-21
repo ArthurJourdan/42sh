@@ -55,8 +55,7 @@ static int init_pipes(command_t *tmp, memory_t *env_mem)
 
     if (is_built_in(tmp->instruction) != -1) {
         if (!tmp->next || (tmp->next && tmp->next->type <= DOUBLE_I)) {
-            exec_built_ins(tmp->instruction, env_mem);
-            return 0;
+            return exec_built_ins(tmp->instruction, env_mem);
         }
     }
     if (pipe(pipefd[fst_or_sec]) == -1) {

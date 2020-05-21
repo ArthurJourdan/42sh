@@ -21,12 +21,12 @@ bool my_exit(char **av, memory_t *env_m)
 
     if (ac > 2) {
         exit_error_msg();
-        return false;
+        return true;
     }
     if (ac == 2) {
         if (!my_str_is_num(av[1])) {
             exit_error_msg();
-            return false;
+            return true;
         }
         signal(SIGINT, SIG_IGN);
         free_env_mem(env_m);

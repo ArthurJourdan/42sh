@@ -45,12 +45,13 @@ bool exec_built_ins(char *instructions, memory_t *env_mem)
 {
     int type = is_built_in(instructions);
     char **command = NULL;
+    bool return_type = false;
 
     if (type != -1) {
         command = my_str_to_word_arr(instructions);
-        built_ins[type].fct(command, env_mem);
+        return_type = built_ins[type].fct(command, env_mem);
         free_double_char_arr(command);
-        return true;
+        return return_type;
     }
     return false;
 }
