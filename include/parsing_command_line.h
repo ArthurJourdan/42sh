@@ -56,6 +56,8 @@ enum types_e assign_type(command_t *prev_part, char * const instruction);
 
 
 // ERROR HANDLING
+char *quote_error(char *line);
+
 bool parsing_error(command_t *command);
 bool parsing_error_msg(int error_nb);
 bool is_separator(command_t *tmp);

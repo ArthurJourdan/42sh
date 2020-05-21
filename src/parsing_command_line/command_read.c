@@ -32,8 +32,10 @@ char *command_read(void)
             my_dprintf(1, "exit\n");
         return my_strcpy("exit\n");
     }
-    while (!are_quotes_filled(line))
-        line = my_strcat(line, get_one_line(), true, true);
+    if (BONUS) {
+        while (!are_quotes_filled(line))
+            line = my_strcat(line, get_one_line(), true, true);
+    }
     return line;
 }
 

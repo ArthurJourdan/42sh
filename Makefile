@@ -66,6 +66,7 @@ SRC		=	${SRCDIR}main.c						\
 			${SRCDIR}minishell_manager.c		\
 			\
 			$(PARSE)command_read.c				\
+			$(PARSE)quote_error.c				\
 			$(PARSE)my_command_parser.c			\
 			$(PARSE)fill_cmd_part.c				\
 			$(PARSE)parsing_error.c				\

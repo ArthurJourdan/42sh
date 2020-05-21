@@ -13,6 +13,8 @@
 #include "parsing_command_line.h"
 #include "built_in.h"
 
+#define BONUS (false)
+
 #define OUT 0
 #define IN 1
 #define IS_WHITESPACE(x) (x == ' ' || x == '\t' || x == '\n')

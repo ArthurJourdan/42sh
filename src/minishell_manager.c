@@ -20,6 +20,9 @@
 static char *assign_new_commands(char *line, memory_t *env_mem)
 {
     line = rm_char_in_str(line, '\n');
+    line = quote_error(line);
+    if (!line)
+        return NULL;
     line = is_wildcard(line);
     line = check_fill_history(line, env_mem);
     return line;
@@ -35,6 +38,8 @@ static bool prompt_loop(memory_t *env_mem)
         if (!line)
             continue;
         line = assign_new_commands(line, env_mem);
+        if (!line)
+            continue;
         command_exec(line, env_mem);
         if (line)
             free(line);
