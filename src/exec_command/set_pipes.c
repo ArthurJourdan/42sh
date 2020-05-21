@@ -25,7 +25,7 @@ static void check_prev_pipes(command_t *tmp, int pipefd[2])
 static void check_next_pipes(command_t *tmp, int pipefd[2])
 {
     if (!tmp->next || tmp->next->type != SIMPLE_I)
-       return;
+        return;
     if (!tmp->next->next)
         return;
     if (dup2(pipefd[1], STDOUT_FILENO) == -1)

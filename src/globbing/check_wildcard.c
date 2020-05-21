@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** 42SH Check wildcard
 ** File description:
-** 
+** check_wildcard.c
 */
 
 #include "my.h"
@@ -11,7 +11,7 @@
 int *compare_char(char *newcmd, int *ret, int i)
 {
     for (int j = 0; newcmd[j] != '\0'; j++) {
-        if (newcmd[j] == '*' || newcmd[j] == '?'|| newcmd[j] == '[') {
+        if (newcmd[j] == '*' || newcmd[j] == '?' || newcmd[j] == '[') {
             ret[0] = 0;
             ret[1] = i;
             return ret;

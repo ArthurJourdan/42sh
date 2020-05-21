@@ -49,7 +49,7 @@ static void set_redirection_from(command_t *tmp)
             free_double_char_arr(fp);
         }
         if (fd != -1) {
-            if(dup2(fd, STDIN_FILENO) == -1)
+            if (dup2(fd, STDIN_FILENO) == -1)
                 exit(EXIT_FAILURE);
             close(fd);
         }

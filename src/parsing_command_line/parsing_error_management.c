@@ -26,7 +26,6 @@ bool parsing_error(command_t *command)
 {
     command_t *tmp = command;
 
-
     if (is_separator(tmp))
         return parsing_error_msg(0);
     while (tmp->next) {

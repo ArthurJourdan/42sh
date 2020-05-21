@@ -24,7 +24,7 @@ void create_fd_redirect(char *line, char **fp)
         line = rm_char_in_str(line, '\n');
         if (my_strcmp(fp[0], line) == true)
             break;
-        for (int i= 0; line[i] != '\0'; i++)
+        for (int i = 0; line[i] != '\0'; i++)
             write(fd, &line[i], 1);
         write(fd, &c, 1);
     }

@@ -11,20 +11,6 @@
 #include "minishell.h"
 #include "built_in.h"
 
-/* {
-    fork
-    pipefd
-    if (child) {
-        dup2(STDOUT, pipefd[1]);
-        close
-        recursion {
-            command_exec()//que ce qu'il y a dans les backtic
-            exit();
-        }
-    } else if (dad)
-        line = inclut_pipfd_dans_line(line, pipefd[0]);// ls `ls` == ls Makefile 42sh lib
-} */
-
 static void parent_process(command_t *command, pid_t my_pid, int pipefd[2])
 {
     close(pipefd[1]);

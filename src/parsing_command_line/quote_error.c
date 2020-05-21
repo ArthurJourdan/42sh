@@ -41,8 +41,8 @@ bool command_access_simple_quote(char *line)
 int if_echo(char *line)
 {
     for (int i = 0; line[i] != '\0'; i++) {
-        if (line[i] == 'e' && line[i + 1] == 'c' 
-        && line[i + 2] == 'c' && line[i + 3] == 'h' 
+        if (line[i] == 'e' && line[i + 1] == 'c' \
+        && line[i + 2] == 'c' && line[i + 3] == 'h' \
         && (line[i + 4] == ' ' || line[i + 5] == '\0'))
             return 0;
     }
@@ -71,7 +71,7 @@ char *pars_line_supp_quotes(char *line)
 
 char *quote_error(char *line)
 {
-    if ((command_access_simple_quote(line) 
+    if ((command_access_simple_quote(line)
     && command_access_double_quote(line)) || if_echo(line) == 1) {
         line = pars_line_supp_quotes(line);
     }

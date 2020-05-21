@@ -34,7 +34,7 @@ char *copy_old_commands(char *newcmd, int *pos, char *cmdv2)
     for (int j = 0; newcmd[j] != '\0'; j++){
         cmdv2 = realloc(cmdv2, sizeof(char) * (*pos + 1));
         cmdv2[*pos] = newcmd[j];
-       *pos += 1;
+        *pos += 1;
     }
     cmdv2 = realloc(cmdv2, sizeof(char) * (*pos + 1));
     cmdv2[*pos] = ' ';
@@ -46,7 +46,7 @@ char *get_new_command(char **newcmd, glob_t buff, int *ret)
 {
     int pos = 0;
     char *cmdv2 = NULL;
-    
+
     for (int i = 0; newcmd[i] != NULL; i++) {
         if (i == ret[1]) {
             cmdv2 = copy_new_command(&pos, cmdv2, buff.gl_pathv);
