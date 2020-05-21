@@ -63,7 +63,7 @@ static void set_double_redirection_to(command_t *tmp)
 
     if (!tmp->next)
         return;
-    if (tmp->next->type == S_REDIRECT && tmp->next->next
+    if (tmp->next->type == D_REDIRECT && tmp->next->next
     && tmp->next->next->type == MY_FILE) {
         fp = my_str_to_word_arr(tmp->next->next->instruction);
         if (fp) {
