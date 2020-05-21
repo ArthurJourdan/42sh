@@ -61,6 +61,8 @@ MY_ECHO	=	$(BUILTIN)my_echo/
 
 EXIT	=	$(BUILTIN)exit/
 
+BACKTIC	=	$(SRCDIR)backtic/
+
 COMMAND	=	$(SRCDIR)exec_command/
 
 SRC		=	${SRCDIR}main.c						\
@@ -106,7 +108,10 @@ SRC		=	${SRCDIR}main.c						\
 			\
 			$(MY_ECHO)my_echo.c					\
 			\
+			$(BACKTIC)substitute_backtics.c		\
+			\
 			$(COMMAND)command_exists.c			\
+			$(COMMAND)launch_command_parser.c	\
 			$(COMMAND)my_pre_exec.c				\
 			$(COMMAND)my_exec.c					\
 			\

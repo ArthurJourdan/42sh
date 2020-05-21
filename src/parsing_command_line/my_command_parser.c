@@ -18,9 +18,10 @@ static separator_t separators[] = {
     {">", S_REDIRECT, 0},
     {"<", S_REDIRECT_IN, 0},
     {";", SEMICOLON, 0},
-    {"||", DOUBLE_I ,0},
-    {"|", SIMPLE_I ,0},
-    {"&&", DOUBLE_E ,0}
+    {"||", DOUBLE_I, 0},
+    {"|", SIMPLE_I, 0},
+    {"&&", DOUBLE_E, 0},
+    {"`", BACKTIC, 0}
 };
 
 static separator_t get_pos_separator(char * const line)

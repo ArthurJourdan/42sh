@@ -20,7 +20,7 @@
 static char *assign_new_commands(char *line, memory_t *env_mem)
 {
     line = rm_char_in_str(line, '\n');
-    line = quote_error(line);
+    // line = quote_error(line);
     if (!line)
         return NULL;
     line = is_wildcard(line);
@@ -40,7 +40,7 @@ static bool prompt_loop(memory_t *env_mem)
         line = assign_new_commands(line, env_mem);
         if (!line)
             continue;
-        command_exec(line, env_mem);
+        launch_command_parser(line, env_mem);
         if (line)
             free(line);
     }

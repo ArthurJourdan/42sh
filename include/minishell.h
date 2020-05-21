@@ -33,11 +33,20 @@ char *command_match(char **path_arr, char * const is_command);
 
 bool check_direct_exec(char *command);
 
+// SEPARATORS
 bool short_circuit_operators(int *status, command_t *tmp);
 void set_pipes(int pipefd[2][2], command_t *command, int fst_or_sec);
 void set_redirections(command_t *command);
 void create_fd_redirect(char *line, char **fp);
-bool command_exec(char *line, memory_t *env_mem);
+// !SEPARATORS
+
+void launch_command_parser(char *line, memory_t *env_mem);
+
+// BACKTICS
+void substitute_backtics(command_t *command, memory_t *env_mem);
+// !BACKTICS
+
+bool command_exec(command_t *command, memory_t *env_mem);
 
 char *get_command_path(char **instructions, memory_t *env_mem);
 

@@ -89,12 +89,8 @@ static void launch_separators(command_t *cmd, memory_t *env_mem)
     }
 }
 
-bool command_exec(char *line, memory_t *env_mem)
+bool command_exec(command_t *command, memory_t *env_mem)
 {
-    command_t *command = my_command_parser(line);
-
-    if (!command)
-        return false;
     while (command) {
         launch_separators(command, env_mem);
         while (command) {
