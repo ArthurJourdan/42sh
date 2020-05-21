@@ -17,7 +17,6 @@ enum types_e {
     SEMICOLON,
     DOUBLE_E,
     DOUBLE_I,
-    SIMPLE_E,
     SIMPLE_I,
     S_REDIRECT,
     S_REDIRECT_IN,

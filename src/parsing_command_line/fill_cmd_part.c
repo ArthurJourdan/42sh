@@ -14,6 +14,8 @@ static command_t *init_node(command_t *prev_part)
 
     if (!next_part)
         return NULL;
+    next_part->type = NONE_TY;
+    next_part->instruction = NULL;
     next_part->next = NULL;
     next_part->prev = prev_part;
     return next_part;
@@ -53,14 +55,11 @@ command_t *prev_part)
         return next_part;
     }
     str_until_sep = my_str_cpy_until_str(line, next_sep.sep);
-    if (next_sep.pos == 0 ||
-    my_str_is_chars(str_until_sep + my_strlen(next_sep.sep), 3,
-    next_sep.sep[0], ' ', '\n')) {
+    if (next_sep.pos == 0) {
         fill_sep(next_part, next_sep);
     } else {
         fill_if_sep(next_part, str_until_sep, prev_part);
     }
-    if (str_until_sep)
-        free(str_until_sep);
+    free_char_to_null(str_until_sep);
     return next_part;
 }

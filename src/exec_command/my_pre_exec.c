@@ -23,7 +23,7 @@ int pipefd[2][2], int fst_or_sec)
     }
 }
 
-static void forking_pipes(command_t *tmp, memory_t *env_mem, \
+static int forking_pipes(command_t *tmp, memory_t *env_mem, \
 int pipefd[2][2], int fst_or_sec)
 {
     int status = 0;
@@ -31,7 +31,7 @@ int pipefd[2][2], int fst_or_sec)
 
     my_pid = fork();
     if (my_pid == -1) {
-        return;
+        return -1;
     } else if (my_pid == 0) {
         separate_separators(tmp, env_mem, pipefd, fst_or_sec);
     } else {
@@ -44,17 +44,19 @@ int pipefd[2][2], int fst_or_sec)
         waitpid(my_pid, &status, 0);
         understand_status(status);
     }
+    return status;
 }
 
-static bool init_pipes(command_t *tmp, memory_t *env_mem)
+static int init_pipes(command_t *tmp, memory_t *env_mem)
 {
     static int pipefd[2][2] = {{-1, -1}, {-1, -1}};
     static int fst_or_sec = 0;
+    int status = 0;
 
     if (is_built_in(tmp->instruction) != -1) {
-        if (!tmp->next || (tmp->next && tmp->next->type <= DOUBLE_I)) {
+        if (!tmp->next || (tmp->next && tmp->next->type <= SEMICOLON)) {
             exec_built_ins(tmp->instruction, env_mem);
-            return true;
+            return 0;
         }
     }
     if (pipe(pipefd[fst_or_sec]) == -1) {
@@ -63,21 +65,25 @@ static bool init_pipes(command_t *tmp, memory_t *env_mem)
         perror("pipe");
         exit(EXIT_FAILURE);
     }
-    forking_pipes(tmp, env_mem, pipefd, fst_or_sec);
+    status = forking_pipes(tmp, env_mem, pipefd, fst_or_sec);
     fst_or_sec = invert_int(fst_or_sec);
-    return true;
+    return status;
 }
 
 static void launch_separators(command_t *cmd, memory_t *env_mem)
 {
     command_t *tmp = cmd;
+    int status = 0;
 
     while (tmp && tmp->type != SEMICOLON) {
+        if (!short_circuit_operators(&status, tmp->prev)) {
+                tmp = tmp->next;
+                continue;
+        }
         if (tmp->type == COMMAND || tmp->type == BUILT_IN) {
             tmp->instruction = check_fill_aliases(tmp->instruction, \
             env_mem->aliases);
-            if (!init_pipes(tmp, env_mem))
-                return;
+            status = init_pipes(tmp, env_mem);
         }
         tmp = tmp->next;
     }

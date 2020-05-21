@@ -13,7 +13,7 @@
 #include "parsing_command_line.h"
 #include "built_in.h"
 
-#define BONUS (false)
+#define BONUS (true)
 
 #define OUT 0
 #define IN 1
@@ -33,6 +33,7 @@ char *command_match(char **path_arr, char * const is_command);
 
 bool check_direct_exec(char *command);
 
+bool short_circuit_operators(int *status, command_t *tmp);
 void set_pipes(int pipefd[2][2], command_t *command, int fst_or_sec);
 void set_redirections(command_t *command);
 void create_fd_redirect(char *line, char **fp);

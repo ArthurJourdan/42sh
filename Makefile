@@ -108,6 +108,7 @@ SRC		=	${SRCDIR}main.c						\
 			\
 			$(COMMAND)get_command_path.c		\
 			\
+			$(COMMAND)short_circuit_operators.c	\
 			$(COMMAND)set_pipes.c				\
 			$(COMMAND)create_fd_redirect.c		\
 			$(COMMAND)set_redirections.c		\

@@ -18,8 +18,8 @@ static separator_t separators[] = {
     {">", S_REDIRECT, 0},
     {"<", S_REDIRECT_IN, 0},
     {";", SEMICOLON, 0},
-    {"|", SIMPLE_I ,0},
     {"||", DOUBLE_I ,0},
+    {"|", SIMPLE_I ,0},
     {"&&", DOUBLE_E ,0}
 };
 
@@ -48,7 +48,8 @@ static command_t *get_command_line(char * const line)
 
     command_part = fill_cmd_part(line, next_sep, NULL);
     for (ssize_t a = 0; a == -1 || line[a]; ) {
-        if (next_sep.pos < 1)
+        my_dprintf(1, "pos == %i\n", next_sep.pos);
+        if (next_sep.pos == 0)
             a += my_strlen(next_sep.sep);
         a += next_sep.pos;
         if (next_sep.pos == -1)
@@ -79,6 +80,5 @@ command_t *my_command_parser(char * const line)
         free_command(parsed_command);
         return NULL;
     }
-    // rm_useless_cmds(parsed_command);
     return parsed_command;
 }
