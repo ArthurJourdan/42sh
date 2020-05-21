@@ -57,6 +57,8 @@ WHICH	=	$(BUILTIN)which/
 
 WHERE	=	$(BUILTIN)where/
 
+EXIT	=	$(BUILTIN)exit/
+
 COMMAND	=	$(SRCDIR)exec_command/
 
 SRC		=	${SRCDIR}main.c						\
@@ -79,7 +81,8 @@ SRC		=	${SRCDIR}main.c						\
 			$(ENV)env_management.c				\
 			\
 			$(BUILTIN)exec_built_ins.c			\
-			$(BUILTIN)my_exit.c					\
+			\
+			$(EXIT)my_exit.c					\
 			\
 			$(CD)change_pwd.c					\
 			\
