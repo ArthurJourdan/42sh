@@ -25,9 +25,10 @@
         line = inclut_pipfd_dans_line(line, pipefd[0]);// ls `ls` == ls Makefile 42sh lib
 } */
 
-static void parent_process(command_t *command, memory_t *env_mem, pid_t my_pid)
+static void parent_process(command_t *command, pid_t my_pid, int pipefd[2])
 {
-    // remove_cmd_backtick(env_mem);
+    close(pipefd[1]);
+    command = remove_cmd_backtick(command);
     waitpid(my_pid, NULL, 0);
     // use pipefd[0] to update new command;
 }
@@ -37,8 +38,9 @@ static void child_process(command_t *command, memory_t *env_mem, int pipefd[2])
     dup2(STDOUT_FILENO, pipefd[1]);
     close(pipefd[1]);
     close(pipefd[0]);
-    // get_cmd_backtick(command);
+    command = get_cmd_backtick(command);
     command_exec(command, env_mem);
+    exit(EXIT_SUCCESS);
 }
 
 static void fork_backtics(command_t *command, memory_t *env_mem, int pipefd[2])
@@ -51,7 +53,7 @@ static void fork_backtics(command_t *command, memory_t *env_mem, int pipefd[2])
     } else if (my_pid == 0) {
         child_process(command, env_mem, pipefd);
     } else {
-        parent_process(command, env_mem, my_pid);
+        parent_process(command, my_pid, pipefd);
     }
 }
 

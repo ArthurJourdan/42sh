@@ -44,6 +44,10 @@ void launch_command_parser(char *line, memory_t *env_mem);
 
 // BACKTICS
 void substitute_backtics(command_t *command, memory_t *env_mem);
+
+command_t *get_cmd_backtick(command_t *command);
+command_t *remove_cmd_backtick(command_t *command);
+
 // !BACKTICS
 
 bool command_exec(command_t *command, memory_t *env_mem);

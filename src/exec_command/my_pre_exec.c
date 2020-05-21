@@ -54,7 +54,7 @@ static int init_pipes(command_t *tmp, memory_t *env_mem)
     int status = 0;
 
     if (is_built_in(tmp->instruction) != -1) {
-        if (!tmp->next || (tmp->next && tmp->next->type <= SEMICOLON)) {
+        if (!tmp->next || (tmp->next && tmp->next->type <= DOUBLE_I)) {
             exec_built_ins(tmp->instruction, env_mem);
             return 0;
         }

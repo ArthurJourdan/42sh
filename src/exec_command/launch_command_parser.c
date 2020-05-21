@@ -17,6 +17,6 @@ void launch_command_parser(char *line, memory_t *env_mem)
 
     if (!command)
         return;
-    substitute_backtics(command, env_mem);
+    // substitute_backtics(command, env_mem);
     command_exec(command, env_mem);
 }

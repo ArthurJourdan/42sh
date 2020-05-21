@@ -109,6 +109,7 @@ SRC		=	${SRCDIR}main.c						\
 			$(MY_ECHO)my_echo.c					\
 			\
 			$(BACKTIC)substitute_backtics.c		\
+			$(BACKTIC)get_cmd_backtic.c			\
 			\
 			$(COMMAND)command_exists.c			\
 			$(COMMAND)launch_command_parser.c	\
