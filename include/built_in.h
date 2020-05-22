@@ -46,6 +46,11 @@ typedef struct built_ins {
 bool exec_built_ins(char *instructions, memory_t *env_mem);
 int is_built_in(char *instructions);
 
+// ERROR HANDLING
+bool built_in_error_handling(char **av);
+// !ERROR HANDLING
+
+
 // ENV
 memory_t *init_env_memory(char **env);
 void free_env_mem(memory_t *env_mem);
@@ -61,7 +66,9 @@ bool disp_env(UNUSED char **av, memory_t *env_m);
 // HISTORY
 char *check_fill_history(char *line, memory_t *env_mem);
 
-bool display_history(UNUSED char **av, memory_t *env_mem);
+bool error_handling_history(char **av, memory_t *env_mem);
+
+bool display_history(char **av, memory_t *env_mem);
 
 char *check_one_mark(char *line, char **history, size_t len_history);
 char *check_two_marks(char *line, char **history, size_t len_history);

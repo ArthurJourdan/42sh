@@ -8,6 +8,7 @@
 #include "my.h"
 #include "print.h"
 
+#include "built_in.h"
 #include "minishell.h"
 
 static bool disp_each_path(char **paths, char *cmd)
@@ -31,9 +32,12 @@ static bool disp_each_path(char **paths, char *cmd)
 
 bool disp_where(char **av, memory_t *env_m)
 {
-    char **paths = path_to_path_arr(env_m);
+    char **paths = NULL;
     bool return_type = false;
 
+    if (built_in_error_handling(av))
+        return true;
+    paths = path_to_path_arr(env_m);
     for (size_t a = 1; av[a]; a++) {
         if (disp_each_path(paths, av[a]))
             return_type = true;

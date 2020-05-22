@@ -11,6 +11,11 @@
 
 #include "built_in.h"
 
+static const char *ERR1 = ": Too many arguments.\n";
+static const char *ERR2 = ": Variable name must begin with a letter.\n";
+static const char *ERR3 = ": Variable name must contain ";
+static const char *ERR35 = "alphanumeric characters.\n";
+
 static char **unset_env_var_and_val(char **av, char **env)
 {
     size_t ac = my_arrlen(av);
@@ -27,34 +32,27 @@ static char **unset_env_var_and_val(char **av, char **env)
 
 bool unset_env(char **av, memory_t *env_m)
 {
-    int ac = my_arrlen(av);
-
-    if (ac == 1) {
-        my_dprintf(2, "unsetenv: Too few arguments.\n");
+    if (built_in_error_handling(av)) {
         return true;
     }
     env_m->env = unset_env_var_and_val(av, env_m->env);
     return false;
 }
 
-static bool set_env_error(size_t ac, char **av, memory_t *env)
+static bool set_env_error(size_t ac, char **av)
 {
-    if (ac == 1) {
-        disp_env(NULL, env);
-        return true;
-    }
     if (ac > 3) {
-        my_dprintf(1, "setenv: Too many arguments.\n");
+        my_dprintf(STDERR_FILENO, "%s%s", av[0], ERR1);
         return true;
     }
     if (ac >= 2) {
         if (!my_char_is_alpha_num(*(*(av + 1)), true, false, true)) {
-            my_dprintf(2, "setenv: Variable name must begin with a letter.\n");
+            my_dprintf(STDERR_FILENO, "%s%s", av[0], ERR2);
             return true;
         }
         if (!my_str_is_alphanum(*(av + 1))) {
-            my_dprintf(2, "setenv: Variable name must contain");
-            my_dprintf(2, " alphanumeric characters.\n");
+            my_dprintf(STDERR_FILENO, "%s%s%s", av[0], ERR3, ERR35);
+            my_dprintf(STDERR_FILENO, "");
             return true;
         }
     }
@@ -78,7 +76,11 @@ bool set_env(char **av, memory_t *env_m)
 {
     size_t ac = my_arrlen(av);
 
-    if (set_env_error(ac, av, env_m))
+    if (ac == 1) {
+        disp_env(NULL, env_m);
+        return false;
+    }
+    if (set_env_error(ac, av))
         return true;
     if (get_index_word_begin_in_arr(*(av + 1), env_m->env) != - 1) {
         env_m->env = unset_env_var_and_val(av, env_m->env);

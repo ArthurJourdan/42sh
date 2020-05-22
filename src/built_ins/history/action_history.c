@@ -62,13 +62,3 @@ char *check_two_marks(char *line, char **history, size_t len_history)
     free_double_char_arr(tmp_cmd);
     return line;
 }
-
-bool display_history(UNUSED char **av, memory_t *env_mem)
-{
-    if (!env_mem->history)
-        return false;
-    for (size_t a = 0; env_mem->history[a]; a++) {
-        my_dprintf(STDOUT_FILENO, "\t%i\t%s\n", a, env_mem->history[a]);
-    }
-    return false;
-}

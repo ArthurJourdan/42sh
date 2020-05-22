@@ -17,6 +17,9 @@ static void parent_process(command_t *command, pid_t my_pid, int pipefd[2])
     command = remove_cmd_backtick(command);
     waitpid(my_pid, NULL, 0);
     // use pipefd[0] to update new command;
+    // use assign_types() to get type of new command and
+    // wether create a command_t * (for MY_FILE) or
+    // just concatenate existing command's instruction wirh pipefd[0] (for COMMAND);
 }
 
 static void child_process(command_t *command, memory_t *env_mem, int pipefd[2])

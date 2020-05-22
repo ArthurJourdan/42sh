@@ -65,64 +65,68 @@ BACKTIC	=	$(SRCDIR)backtic/
 
 COMMAND	=	$(SRCDIR)exec_command/
 
-SRC		=	${SRCDIR}main.c						\
+SRC		=	${SRCDIR}main.c								\
 			\
-			${SRCDIR}minishell_manager.c		\
+			${SRCDIR}minishell_manager.c				\
 			\
-			$(PARSE)command_read.c				\
-			$(PARSE)quote_error.c				\
-			$(PARSE)my_command_parser.c			\
-			$(PARSE)fill_cmd_part.c				\
-			$(PARSE)parsing_error.c				\
-			$(PARSE)parsing_error_management.c	\
-			$(PARSE)assign_types.c				\
+			$(PARSE)command_read.c						\
+			$(PARSE)quote_error.c						\
+			$(PARSE)my_command_parser.c					\
+			$(PARSE)fill_cmd_part.c						\
+			$(PARSE)parsing_error.c						\
+			$(PARSE)parsing_error_management.c			\
+			$(PARSE)assign_types.c						\
 			\
-			$(PARSE)free_all.c					\
+			$(PARSE)free_all.c							\
 			\
-			$(ENV)init_env_memory.c				\
-			$(ENV)path_to_path_array.c			\
-			$(ENV)find_var_in_env.c				\
-			$(ENV)disp_env.c					\
-			$(ENV)env_management.c				\
+			$(ENV)init_env_memory.c						\
+			$(ENV)path_to_path_array.c					\
+			$(ENV)find_var_in_env.c						\
+			$(ENV)disp_env.c							\
+			$(ENV)env_management.c						\
 			\
-			$(BUILTIN)exec_built_ins.c			\
+			$(BUILTIN)exec_built_ins.c					\
+			$(BUILTIN)built_in_error_handling.c			\
 			\
-			$(EXIT)my_exit.c					\
+			$(EXIT)my_exit.c							\
 			\
-			$(CD)change_pwd.c					\
+			$(CD)change_pwd.c							\
 			\
-			$(HIST)manage_history.c				\
-			$(HIST)action_history.c				\
+			$(HIST)manage_history.c						\
+			$(HIST)error_handling_history.c				\
+			$(HIST)action_history.c						\
+			$(HIST)display_history.c					\
 			\
-			$(ALIAS)get_aliases_from_file.c		\
-			$(ALIAS)fill_alias_struct.c			\
-			$(ALIAS)is_alias_correct.c			\
-			$(ALIAS)get_alias.c					\
-			$(ALIAS)display_aliases.c			\
-			$(ALIAS)free_aliases.c				\
-			$(ALIAS)check_fill_aliases.c		\
+			$(ALIAS)get_aliases_from_file.c				\
+			$(ALIAS)fill_alias_struct.c					\
+			$(ALIAS)is_alias_correct.c					\
+			$(ALIAS)get_alias.c							\
+			$(ALIAS)display_aliases.c					\
+			$(ALIAS)free_aliases.c						\
+			$(ALIAS)check_fill_aliases.c				\
 			\
-			$(WHICH)disp_which.c				\
+			$(WHICH)disp_which.c						\
 			\
-			$(WHERE)disp_where.c				\
+			$(WHERE)disp_where.c						\
 			\
-			$(MY_ECHO)my_echo.c					\
+			$(MY_ECHO)my_echo.c							\
 			\
-			$(BACKTIC)substitute_backtics.c		\
-			$(BACKTIC)get_cmd_backtic.c			\
+			$(BACKTIC)substitute_backtics.c				\
+			$(BACKTIC)get_cmd_backtic.c					\
+			$(BACKTIC)put_result_backtic_command_line.c	\
 			\
-			$(COMMAND)command_exists.c			\
-			$(COMMAND)launch_command_parser.c	\
-			$(COMMAND)my_pre_exec.c				\
-			$(COMMAND)my_exec.c					\
+			$(COMMAND)command_exists.c					\
+			$(COMMAND)launch_command_parser.c			\
+			$(COMMAND)my_pre_exec.c						\
+			$(COMMAND)my_exec.c							\
 			\
-			$(COMMAND)get_command_path.c		\
+			$(COMMAND)get_command_path.c				\
 			\
-			$(COMMAND)short_circuit_operators.c	\
-			$(COMMAND)set_pipes.c				\
-			$(COMMAND)create_fd_redirect.c		\
-			$(COMMAND)set_redirections.c		\
-			$(COMMAND)exec_error_msg.c			\
+			$(COMMAND)short_circuit_operators.c			\
+			$(COMMAND)set_pipes.c						\
+			$(COMMAND)create_fd_redirect.c				\
+			$(COMMAND)set_redirections.c				\
+			$(COMMAND)exec_error_msg.c					\
 			\
 			$(GLOB)check_wildcard.c			\
 			$(GLOB)wildcards.c	\
