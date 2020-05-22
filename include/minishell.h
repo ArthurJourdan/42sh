@@ -58,8 +58,8 @@ char *get_command_path(char **instructions, memory_t *env_mem);
 
 bool check_command(command_t *pre_command, memory_t *env_mem);
 
-bool exec_error_msg(char *comd);
-bool after_exec_error_msg(char *comd);
+bool exec_error_msg(char * const cmd);
+bool after_exec_error_msg(char *cmd);
 bool understand_status(int status);
 // !COMMAND
 

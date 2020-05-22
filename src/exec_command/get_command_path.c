@@ -21,7 +21,6 @@ char *get_command_path(char **instructions, memory_t *env_mem)
     command = command_match(path_arr, instructions[0]);
     free_double_char_arr(path_arr);
     if (!command) {
-        exec_error_msg(instructions[0]);
         return NULL;
     }
     return command;

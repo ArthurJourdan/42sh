@@ -27,22 +27,24 @@ static bool exec_stantard_command(char **instructions,  memory_t *env_mem)
     char *command = NULL;
 
     command = get_command_path(instructions, env_mem);
-    if (!command)
+    if (!command) {
+        exec_error_msg(instructions[0]);
         return false;
+    }
     if (!my_exec(command, instructions, env_mem->env))
         return false;
     return true;
 }
 
-static bool type_cmd(command_t *command, memory_t *env_mem, char **instruct)
+static bool type_cmd(command_t *command, memory_t *env_mem, char **instruc)
 {
     if (exec_built_ins(command->instruction, env_mem)) {
         exit(EXIT_SUCCESS);
-    } else if (!access(instruct[0], X_OK)) {
-        my_exec(instruct[0], instruct, env_mem->env);
+    } else if (!access(instruc[0], X_OK) && my_str_has_char(instruc[0], '/')) {
+        my_exec(instruc[0], instruc, env_mem->env);
         return true;
     } else  {
-        return exec_stantard_command(instruct, env_mem);
+        return exec_stantard_command(instruc, env_mem);
     }
     return false;
 }
