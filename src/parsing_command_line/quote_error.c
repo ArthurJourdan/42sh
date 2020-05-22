@@ -11,8 +11,8 @@
 int if_echo(char *line)
 {
     for (int i = 0; line[i] != '\0'; i++) {
-        if (line[i] == 'e' && line[i + 1] == 'c' \
-        && line[i + 2] == 'c' && line[i + 3] == 'h' \
+        if (line[i] == 'e' && line[i + 1] == 'c'
+        && line[i + 2] == 'h' && line[i + 3] == 'o'
         && (line[i + 4] == ' ' || line[i + 5] == '\0'))
             return 0;
     }
@@ -85,8 +85,10 @@ char *quote_error(char *line)
         return line;
     if ((simple > 0 && doubles == 0) || (simple == 0 && doubles > 0))
         line = pars_line_supp_quotes(line);
-    else if (if_echo(line) == 0)
+    if (if_echo(line) == 0) {
         line = pars_line_supp_quotes_echo(line, doubles, simple);
+        return line;
+    }
     if (doubles < 0) {
         my_putstr(1, "Unmatched \'\"\'.\n");
         return NULL;
