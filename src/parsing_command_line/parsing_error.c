@@ -14,9 +14,11 @@ bool is_separator(command_t *tmp)
 {
     if (!tmp)
         return false;
-    if (tmp->type != COMMAND && tmp->type != MY_FILE && tmp->type != BUILT_IN)
-        return true;
-    return false;
+    if (tmp->type == COMMAND || tmp->type == MY_FILE || tmp->type == BUILT_IN)
+        return false;
+    if (tmp->type == SEMICOLON || tmp->type == BACKTIC)
+        return false;
+    return true;
 }
 
 bool pipe_with_file(command_t *tmp)
