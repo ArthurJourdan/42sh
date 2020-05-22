@@ -113,6 +113,7 @@ SRC		=	${SRCDIR}main.c								\
 			\
 			$(BACKTIC)substitute_backtics.c				\
 			$(BACKTIC)get_cmd_backtic.c					\
+			$(BACKTIC)add_cmd_from_backtic.c			\
 			\
 			$(COMMAND)command_exists.c					\
 			$(COMMAND)launch_command_parser.c			\

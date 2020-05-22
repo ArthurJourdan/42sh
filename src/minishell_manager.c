@@ -52,11 +52,11 @@ bool minishell_manager(char **env)
 {
     memory_t *env_mem = init_env_memory(env);
 
-    signal(SIGINT, SIG_IGN);
+    // signal(SIGINT, SIG_IGN);
     if (!env_mem)
         return false;
     prompt_loop(env_mem);
     free_env_mem(env_mem);
-    signal(SIGINT, SIG_IGN);
+    // signal(SIGINT, SIG_IGN);
     return true;
 }

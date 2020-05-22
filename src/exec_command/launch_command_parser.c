@@ -14,9 +14,11 @@
 void launch_command_parser(char *line, memory_t *env_mem)
 {
     command_t *command = my_command_parser(line);
-    
+
     if (!command)
         return;
-    substitute_backtics(command, env_mem);
+    command = substitute_backtics(command, env_mem);
+    if (!command)
+        return;
     command_exec(command, env_mem);
 }

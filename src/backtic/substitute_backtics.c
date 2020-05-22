@@ -11,41 +11,40 @@
 #include "minishell.h"
 #include "built_in.h"
 
-static void parent_process(command_t *command, pid_t my_pid, int pipefd[2])
+static command_t *parent_process(command_t *cmd, pid_t my_pid, int pipefd[2])
 {
     close(pipefd[1]);
     waitpid(my_pid, NULL, 0);
-    // use pipefd[0] to update new command;
-    // use assign_types() to get type of new command and
-    // wether create a command_t * (for MY_FILE) or
-    // just concatenate existing command's instruction wirh pipefd[0] (for COMMAND);
+    cmd = add_cmd_from_backtic(cmd, pipefd[0]);
+    return cmd;
 }
 
-static void child_process(command_t *command, memory_t *env_mem, int pipefd[2])
+static void child_process(command_t *cmd, memory_t *env_m, int pipefd[2])
 {
-    dup2(STDOUT_FILENO, pipefd[1]);
+    dup2(pipefd[1], STDOUT_FILENO);
     close(pipefd[1]);
     close(pipefd[0]);
-    command = get_cmd_backtick(command);
-    command_exec(command, env_mem);
+    cmd = get_cmd_backtick(cmd);
+    command_exec(cmd, env_m);
     exit(EXIT_SUCCESS);
 }
 
-static void fork_backtics(command_t *command, memory_t *env_mem, int pipefd[2])
+static command_t *fork_backtics(command_t *cmd, memory_t *env_m, int pipefd[2])
 {
     pid_t my_pid = -1;
 
     my_pid = fork();
     if (my_pid == -1) {
-        return;
+        return NULL;
     } else if (my_pid == 0) {
-        child_process(command, env_mem, pipefd);
+        child_process(cmd, env_m, pipefd);
     } else {
-        parent_process(command, my_pid, pipefd);
+        cmd = parent_process(cmd, my_pid, pipefd);
     }
+    return cmd;
 }
 
-static void pipe_backtics(command_t *command, memory_t *env_mem)
+static command_t *pipe_backtics(command_t *cmd, memory_t *env_mem)
 {
     int pipefd[2];
 
@@ -55,17 +54,26 @@ static void pipe_backtics(command_t *command, memory_t *env_mem)
         perror("pipe");
         exit(EXIT_FAILURE);
     }
-    fork_backtics(command, env_mem, pipefd);
+    cmd = fork_backtics(cmd, env_mem, pipefd);
+    return cmd;
 }
 
-void substitute_backtics(command_t *command, memory_t *env_mem)
+command_t *substitute_backtics(command_t *cmd, memory_t *env_mem)
 {
-    command_t *tmp = command;
+    command_t *tmp = cmd;
 
     while (tmp) {
         if (tmp->type == BACKTIC && tmp->next && tmp->next->type <= BUILT_IN) {
-            pipe_backtics(tmp, env_mem);
+            tmp = pipe_backtics(tmp, env_mem);
         }
-        tmp = tmp->next;
+        if (!tmp)
+            return NULL;
+        if (tmp->next)
+            tmp = tmp->next;
+        else
+            break;
     }
+    while (tmp->prev)
+        tmp = tmp->prev;
+    return tmp;
 }
