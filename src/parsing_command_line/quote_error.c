@@ -8,6 +8,8 @@
 #include "my.h"
 #include "print.h"
 
+#include "parsing_command_line.h"
+
 int if_echo(char *line)
 {
     for (int i = 0; line[i] != '\0'; i++) {

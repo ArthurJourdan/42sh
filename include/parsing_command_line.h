@@ -67,6 +67,10 @@ bool pipe_with_file(command_t *tmp);
 bool missing_file(command_t *tmp);
 
 command_t *rm_useless_cmds(command_t *command);
+
+int command_access_simple_quote(char *line);
+int command_access_double_quote(char *line);
+
 // !ERROR HANDLING
 
 // FREE
