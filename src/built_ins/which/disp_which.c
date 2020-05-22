@@ -11,6 +11,8 @@
 #include "built_in.h"
 #include "minishell.h"
 
+static const char *ALL = "-a";
+
 static bool display_one_which(char **av, memory_t *env_mem)
 {
     char *command = NULL;
@@ -30,6 +32,9 @@ bool disp_which(char **av, memory_t *env_mem)
 
     if (built_in_error_handling(av))
         return true;
+    if (my_strcmp(av[1], ALL)) {
+        return disp_where(av, env_mem);
+    }
     for (size_t a = 1; av[a]; a++) {
         if (display_one_which(av + a, env_mem)) {
             return_value = true;
