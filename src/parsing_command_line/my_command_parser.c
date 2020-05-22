@@ -42,6 +42,24 @@ static separator_t get_pos_separator(char * const line)
     return infos;
 }
 
+static command_t *free_useless_instructions(command_t *command)
+{
+    while (command->prev) {
+        command = command->prev;
+    }
+    while (command->next) {
+        if (my_str_is_nothing(command->next->instruction)) {
+            free_one_command(command->next);
+            continue;
+        }
+        command = command->next;
+    }
+    while (command->prev) {
+        command = command->prev;
+    }
+    return command;
+}
+
 static command_t *get_command_line(char * const line)
 {
     command_t *command_part = NULL;
@@ -58,11 +76,7 @@ static command_t *get_command_line(char * const line)
         command_part->next = fill_cmd_part(line + a, next_sep, command_part);
         command_part = command_part->next;
     }
-    if (my_str_is_nothing(command_part->instruction)) {
-        command_part = command_part->prev;
-        free(command_part->next);
-        command_part->next = NULL;
-    }
+    command_part = free_useless_instructions(command_part);
     return command_part;
 }
 
@@ -73,9 +87,6 @@ command_t *my_command_parser(char * const line)
     if (my_str_is_nothing(line))
         return NULL;
     parsed_command = get_command_line(line);
-    while (parsed_command->prev) {
-        parsed_command = parsed_command->prev;
-    }
     if (parsing_error(parsed_command)) {
         free_command(parsed_command);
         return NULL;
