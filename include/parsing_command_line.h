@@ -57,6 +57,8 @@ enum types_e assign_type(command_t *prev_part, char * const instruction);
 
 // ERROR HANDLING
 char *quote_error(char *line);
+int command_access_double_quote(char *line);
+int command_access_simple_quote(char *line);
 
 bool parsing_error(command_t *command);
 bool parsing_error_msg(int error_nb);
