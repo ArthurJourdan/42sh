@@ -14,7 +14,6 @@
 static void parent_process(command_t *command, pid_t my_pid, int pipefd[2])
 {
     close(pipefd[1]);
-    command = remove_cmd_backtick(command);
     waitpid(my_pid, NULL, 0);
     // use pipefd[0] to update new command;
     // use assign_types() to get type of new command and

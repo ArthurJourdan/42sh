@@ -14,12 +14,16 @@ command_t *get_cmd_backtick(command_t *command)
     command_t *tmp = command;
 
     tmp = tmp->next;
+    if (!tmp)
+        return tmp;
     while (tmp->prev)
         free_one_command(tmp->prev);
-    while (tmp && tmp->type != BACKTIC)
+    while (tmp->next && tmp->next->type != BACKTIC)
         tmp = tmp->next;
     while (tmp->next)
         free_one_command(tmp->next);
+    while (tmp)
+        tmp = tmp->prev;
     return tmp;
 }
 
@@ -27,7 +31,6 @@ command_t *remove_cmd_backtick(command_t *command)
 {
     command_t *tmp = command;
 
-    tmp = tmp->prev;
     while (tmp->next) {
         free_one_command(tmp->next);
         if (tmp->next->type == BACKTIC){
