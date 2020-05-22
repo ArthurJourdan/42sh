@@ -45,6 +45,7 @@ size_t count_occurences_n_words_in_str(char **words, char * const str);
 size_t count_occurences_n_words(char **words, char **arr);
 // ! COUNT
 
+char *get_entire_fd(int const fd);
 char *get_entire_file(char const *filepath);
 char **get_entire_file_double_arr(char const *filepath);
 

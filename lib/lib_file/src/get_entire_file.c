@@ -8,6 +8,26 @@
 #include "file.h"
 #include "my.h"
 
+char *get_entire_fd(int const fd)
+{
+    FILE *file = NULL;
+    char *buff = NULL;
+    size_t zero = 0;
+    int ret_get_l = 0;
+    char *entire_file = NULL;
+
+    file = fdopen(fd, "r");
+    if (!file)
+        return NULL;
+    ret_get_l = getline(&buff, &zero, file);
+    while (ret_get_l != -1) {
+        entire_file = my_strcat(entire_file, buff, true, true);
+        ret_get_l = getline(&buff, &zero, file);
+    }
+    fclose(file);
+    return entire_file;
+}
+
 char *get_entire_file(char const *filepath)
 {
     FILE *fd = NULL;
