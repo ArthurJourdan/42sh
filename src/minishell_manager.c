@@ -20,8 +20,7 @@
 static char *assign_new_commands(char *line, memory_t *env_mem)
 {
     line = rm_char_in_str(line, '\n');
-    if (!BONUS)
-        line = quote_error(line);
+    line = quote_error(line);
     if (!line)
         return NULL;
     line = is_wildcard(line);
