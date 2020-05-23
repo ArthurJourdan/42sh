@@ -12,7 +12,16 @@
 #include "minishell.h"
 
 static const char *ALL = "-a";
+static char * const ERR_BUILTIN = ": shell built-in command.\n";
 
+static bool is_which_built_in(char *command)
+{
+    if (is_built_in(command) != -1) {
+        my_dprintf(STDOUT_FILENO, "%s%s", command, ERR_BUILTIN);
+        return true;
+    }
+    return false;
+}
 static bool display_one_which(char **av, memory_t *env_mem)
 {
     char *command = NULL;
@@ -36,7 +45,9 @@ bool disp_which(char **av, memory_t *env_mem)
         return disp_where(av, env_mem);
     }
     for (size_t a = 1; av[a]; a++) {
-        if (display_one_which(av + a, env_mem)) {
+        if (is_which_built_in(av[a])) {
+            continue;
+        } else if (display_one_which(av + a, env_mem)) {
             return_value = true;
         }
     }

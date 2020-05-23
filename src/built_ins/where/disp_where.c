@@ -11,6 +11,17 @@
 #include "built_in.h"
 #include "minishell.h"
 
+static char * const ERR_BUILTIN = " is shell built-in\n";
+
+static bool is_where_built_in(char *command)
+{
+    if (is_built_in(command) != -1) {
+        my_dprintf(STDOUT_FILENO, "%s%s", command, ERR_BUILTIN);
+        return true;
+    }
+    return false;
+}
+
 static bool disp_each_path(char **paths, char *cmd)
 {
     char *command = NULL;
@@ -39,6 +50,7 @@ bool disp_where(char **av, memory_t *env_m)
         return true;
     paths = path_to_path_arr(env_m);
     for (size_t a = 1; av[a]; a++) {
+        is_where_built_in(av[a]);
         if (disp_each_path(paths, av[a]))
             return_type = true;
     }

@@ -8,12 +8,14 @@
 #include "my.h"
 #include "print.h"
 
+static char * const TOO_FEW_ARGS = ": Too few arguments.\n";
+
 bool built_in_error_handling(char **av)
 {
     if (!av)
         return true;
     if (my_arrlen(av) <= 1) {
-        my_dprintf(STDERR_FILENO, "%s: Too few arguments.\n", av[0]);
+        my_dprintf(STDERR_FILENO, "%s%s", av[0], TOO_FEW_ARGS);
         return true;
     }
     return false;

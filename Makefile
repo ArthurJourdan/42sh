@@ -112,8 +112,8 @@ SRC		=	${SRCDIR}main.c								\
 			\
 			$(MY_ECHO)my_echo.c							\
 			\
-			$(BACKTICK)substitute_backticks.c				\
-			$(BACKTICK)get_cmd_backtick.c					\
+			$(BACKTICK)substitute_backticks.c			\
+			$(BACKTICK)get_cmd_backtick.c				\
 			$(BACKTICK)add_cmd_from_backtick.c			\
 			\
 			$(COMMAND)command_exists.c					\
