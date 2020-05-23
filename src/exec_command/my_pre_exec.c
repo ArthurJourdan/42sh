@@ -5,6 +5,7 @@
 ** my_pre_exec.c
 */
 
+#define _GNU_SOURCE
 #include "my.h"
 #include "print.h"
 #include "file.h"
@@ -16,6 +17,8 @@
 static void separate_separators(command_t *command, memory_t *env_mem,
 int pipefd[2][2], int fst_or_sec)
 {
+    fcntl(pipefd[fst_or_sec][1], F_SETFL, O_NONBLOCK);
+    fcntl(pipefd[fst_or_sec][1], F_SETPIPE_SZ, 1048576);
     set_pipes(pipefd, command, fst_or_sec);
     set_redirections(command);
     if (!check_command(command, env_mem)) {
