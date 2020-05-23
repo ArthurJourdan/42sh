@@ -26,6 +26,7 @@ typedef struct {
 enum built_in_index {
     NONE_BI = -1,
     CD,
+    DOLLAR,
     ENV,
     SETENV,
     UNSETENV,
@@ -61,6 +62,8 @@ char *find_var_in_env(char * const var, char **env);
 bool set_env(char **av, memory_t *env_m);
 bool unset_env(char **av, memory_t *env_m);
 bool disp_env(UNUSED char **av, memory_t *env_m);
+
+char *change_dol_var_env(char *line, char **env_m);
 // !ENV
 
 // HISTORY

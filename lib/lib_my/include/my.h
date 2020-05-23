@@ -8,7 +8,10 @@
 #ifndef MY_H_
 #define MY_H_
 
+#define _GNU_SOURCE
+
 #include <stdlib.h>
+#include <fcntl.h>
 #include <unistd.h>
 #include <stdarg.h>
 #include <stdio.h>
@@ -24,12 +27,16 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+
 #define ARRAY_SIZE(x) (sizeof(x) / sizeof(x[0]))
 #define MAX(a, b) ((a > b) ? a : b)
 #define MIN(a, b) ((a < b) ? a : b)
 
 #undef EXIT_FAILURE
 #define EXIT_FAILURE (84)
+
+#undef PIPE_BUF
+#define PIPE_BUF (10000000000000000000000000)
 
 // ATTRIBUTES
 #define N_U __attribute__((unused))
@@ -113,7 +120,7 @@ char **my_two_str_to_arr(char *str1, char *str2, bool free);
 
 // CPY
 char *my_strcpy(char *str);
-char *my_str_n_cpy(char *str, int size);
+char *my_str_n_cpy(char *str, size_t size);
 char *my_str_cpy_until_char(char *str, char c);
 char *my_str_cpy_until_str(char *str, char *cmp);
 char *my_str_cpy_quotation(char *str, bool double_q, bool simple, bool magic);

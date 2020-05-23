@@ -19,12 +19,13 @@ ssize_t get_pos_word_in_double_arr(char const *word, char const **arr)
     return -1;
 }
 
-ssize_t get_index_word_begin_in_arr(char const  *word, char **arr)
+ssize_t get_index_word_begin_in_arr(char const *word, char **arr)
 {
-    size_t len = my_strlen(word);
+    size_t len = 0;
 
     if(!word || !arr)
         return (-1);
+    len = my_strlen(word);
     for (size_t pos = 0; arr[pos]; pos++) {
         if (my_str_n_cmp(word, arr[pos], len))
             return pos;
