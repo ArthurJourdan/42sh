@@ -42,7 +42,7 @@ static command_t *get_type_new(command_t *command, char *buff)
     return command;
 }
 
-command_t *add_cmd_from_backtic(command_t *command, int fd)
+command_t *add_cmd_from_backtick(command_t *command, int fd)
 {
     char *buff = get_entire_fd(fd);
 

@@ -21,7 +21,7 @@ static separator_t separators[] = {
     {"||", DOUBLE_I, 0},
     {"|", SIMPLE_I, 0},
     {"&&", DOUBLE_E, 0},
-    {"`", BACKTIC, 0}
+    {"`", BACKTICK, 0}
 };
 
 static separator_t get_pos_separator(char * const line)

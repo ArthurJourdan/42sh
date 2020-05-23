@@ -16,8 +16,6 @@ bool is_separator(command_t *tmp)
         return false;
     if (tmp->type == COMMAND || tmp->type == MY_FILE || tmp->type == BUILT_IN)
         return false;
-    if (tmp->type == SEMICOLON || tmp->type == BACKTIC)
-        return false;
     return true;
 }
 
@@ -27,7 +25,7 @@ bool is_separator_beg_end(command_t *tmp)
         return false;
     if (tmp->type == COMMAND || tmp->type == MY_FILE || tmp->type == BUILT_IN)
         return false;
-    if (tmp->type == SEMICOLON || tmp->type == BACKTIC)
+    if (tmp->type == SEMICOLON || tmp->type == BACKTICK)
         return false;
     return true;
 }

@@ -23,7 +23,7 @@ enum types_e {
     D_REDIRECT,
     D_REDIRECT_IN,
     W_REDIRECT_IN,
-    BACKTIC,
+    BACKTICK,
     NONE_TY = (-1)
 };
 
@@ -63,6 +63,7 @@ int command_access_simple_quote(char *line);
 bool parsing_error(command_t *command);
 bool parsing_error_msg(int error_nb);
 bool is_separator(command_t *tmp);
+bool is_separator_beg_end(command_t *tmp);
 bool pipe_with_file(command_t *tmp);
 bool missing_file(command_t *tmp);
 

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** PSU_42sh
 ** File description:
-** substitute_backtics.c
+** substitute_backticks.c
 */
 
 #include "my.h"
@@ -15,7 +15,7 @@ static command_t *parent_process(command_t *cmd, pid_t my_pid, int pipefd[2])
 {
     close(pipefd[1]);
     waitpid(my_pid, NULL, 0);
-    cmd = add_cmd_from_backtic(cmd, pipefd[0]);
+    cmd = add_cmd_from_backtick(cmd, pipefd[0]);
     return cmd;
 }
 
@@ -29,7 +29,7 @@ static void child_process(command_t *cmd, memory_t *env_m, int pipefd[2])
     exit(EXIT_SUCCESS);
 }
 
-static command_t *fork_backtics(command_t *cmd, memory_t *env_m, int pipefd[2])
+static command_t *fork_backticks(command_t *cmd, memory_t *env_m, int pipefd[2])
 {
     pid_t my_pid = -1;
 
@@ -44,7 +44,7 @@ static command_t *fork_backtics(command_t *cmd, memory_t *env_m, int pipefd[2])
     return cmd;
 }
 
-static command_t *pipe_backtics(command_t *cmd, memory_t *env_mem)
+static command_t *pipe_backticks(command_t *cmd, memory_t *env_mem)
 {
     int pipefd[2];
 
@@ -54,17 +54,17 @@ static command_t *pipe_backtics(command_t *cmd, memory_t *env_mem)
         perror("pipe");
         exit(EXIT_FAILURE);
     }
-    cmd = fork_backtics(cmd, env_mem, pipefd);
+    cmd = fork_backticks(cmd, env_mem, pipefd);
     return cmd;
 }
 
-command_t *substitute_backtics(command_t *cmd, memory_t *env_mem)
+command_t *substitute_backticks(command_t *cmd, memory_t *env_mem)
 {
     command_t *tmp = cmd;
 
     while (tmp) {
-        if (tmp->type == BACKTIC && tmp->next && tmp->next->type <= BUILT_IN) {
-            tmp = pipe_backtics(tmp, env_mem);
+        if (tmp->type == BACKTICK && tmp->next && tmp->next->type <= BUILT_IN) {
+            tmp = pipe_backticks(tmp, env_mem);
         }
         if (!tmp)
             return NULL;

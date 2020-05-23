@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** PSU_minishell2
+** PSU_42sh
 ** File description:
 ** parsing_error_management.c
 */
@@ -22,26 +22,39 @@ bool parsing_error_msg(int error_nb)
     return true;
 }
 
+static bool separator_error(command_t *tmp)
+{
+    if (is_separator(tmp)) {
+        if (is_separator_beg_end(tmp) && is_separator_beg_end(tmp->next))
+            return true;
+        if (is_separator(tmp) && is_separator_beg_end(tmp->next))
+            return true;
+        if (is_separator_beg_end(tmp) && is_separator(tmp->next))
+            return true;
+        }
+    if (is_separator(tmp) && my_str_is_nothing(tmp->next->instruction)) {
+        return true;
+    }
+    return false;
+}
+
 bool parsing_error(command_t *command)
 {
     command_t *tmp = command;
 
-    if (is_separator(tmp))
+    if (is_separator_beg_end(tmp))
         return parsing_error_msg(0);
     while (tmp->next) {
         if (!missing_file(tmp))
             return parsing_error_msg(2);
-        if (is_separator(tmp) && is_separator(tmp->next)) {
+        if (separator_error(tmp))
             return parsing_error_msg(0);
-        if (is_separator(tmp) && my_str_is_nothing(tmp->next->instruction))
-            return parsing_error_msg(0);
-        }
         if (!pipe_with_file(tmp)) {
             return parsing_error_msg(1);
         }
         tmp = tmp->next;
     }
-    if (is_separator(tmp))
+    if (is_separator_beg_end(tmp))
         return parsing_error_msg(0);
     return false;
 }

@@ -61,7 +61,7 @@ MY_ECHO	=	$(BUILTIN)my_echo/
 
 EXIT	=	$(BUILTIN)exit/
 
-BACKTIC	=	$(SRCDIR)backtic/
+BACKTICK	=	$(SRCDIR)backtick/
 
 COMMAND	=	$(SRCDIR)exec_command/
 
@@ -112,9 +112,9 @@ SRC		=	${SRCDIR}main.c								\
 			\
 			$(MY_ECHO)my_echo.c							\
 			\
-			$(BACKTIC)substitute_backtics.c				\
-			$(BACKTIC)get_cmd_backtic.c					\
-			$(BACKTIC)add_cmd_from_backtic.c			\
+			$(BACKTICK)substitute_backticks.c				\
+			$(BACKTICK)get_cmd_backtick.c					\
+			$(BACKTICK)add_cmd_from_backtick.c			\
 			\
 			$(COMMAND)command_exists.c					\
 			$(COMMAND)launch_command_parser.c			\

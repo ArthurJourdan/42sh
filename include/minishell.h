@@ -42,15 +42,15 @@ void create_fd_redirect(char *line, char **fp);
 
 void launch_command_parser(char *line, memory_t *env_mem);
 
-// BACKTICS
-command_t *substitute_backtics(command_t *command, memory_t *env_mem);
+// BACKTICKS
+command_t *substitute_backticks(command_t *command, memory_t *env_mem);
 
-command_t *add_cmd_from_backtic(command_t *command, int fd);
+command_t *add_cmd_from_backtick(command_t *command, int fd);
 
 command_t *get_cmd_backtick(command_t *command);
 command_t *remove_cmd_backtick(command_t *command);
 
-// !BACKTICS
+// !BACKTICKS
 
 bool command_exec(command_t *command, memory_t *env_mem);
 
