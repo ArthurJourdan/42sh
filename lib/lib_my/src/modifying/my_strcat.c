@@ -34,10 +34,10 @@ char *my_strcat_tot(size_t ac, ...)
 
 static void free_cated_srings(char *str1, char *str2, bool free_1, bool free_2)
 {
-    if (free_1) {
+    if (free_1 && str1) {
         free(str1);
     }
-    if (free_2) {
+    if (free_2 && str2) {
         free(str2);
     }
 }
