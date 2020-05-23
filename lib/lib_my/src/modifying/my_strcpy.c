@@ -10,7 +10,7 @@
 
 char *my_strcpy(char *str)
 {
-    int len = my_strlen(str);
+    size_t len = my_strlen(str);
     char *cpy = NULL;
 
     if (!len)
@@ -18,33 +18,32 @@ char *my_strcpy(char *str)
     cpy = malloc(sizeof(char) * (len + 1));
     if (!cpy)
         return NULL;
-    for (int a = 0; a < len; a++)
+    for (size_t a = 0; a < len; a++)
         cpy[a] = str[a];
     cpy[len] = '\0';
     return cpy;
 }
 
-char *my_str_n_cpy(char *str, int size)
+char *my_str_n_cpy(char *str, size_t size)
 {
-    int len = my_strlen(str);
+    size_t len = my_strlen(str);
     char *cpy = NULL;
 
-    if (!len)
+    if (!len || !size)
         return NULL;
     cpy = malloc(sizeof(char) * (size + 1));
     if (!cpy)
         return NULL;
-    for (int a = 0; a < size; a++) {
-        if (a >= len)
-            cpy[a] = '\0';
-        else
-            cpy[a] = str[a];
+    for (size_t a = 0; a < size; a++) {
+        cpy[a] = str[a];
     }
+    cpy[size] = '\0';
+    return cpy;
 }
 
 char *my_str_cpy_until_char(char *str, char c)
 {
-    int len = 0;
+    size_t len = 0;
     char *cpy = NULL;
 
     while (str[len] && str[len++] != c);
@@ -53,7 +52,7 @@ char *my_str_cpy_until_char(char *str, char c)
         return NULL;
     if (!cpy)
         return NULL;
-    for (int a = 0; a < len; a++) {
+    for (size_t a = 0; a < len; a++) {
         cpy[a] = str[a];
     }
     cpy[len] = '\0';
@@ -62,18 +61,19 @@ char *my_str_cpy_until_char(char *str, char c)
 
 char *my_str_cpy_until_str(char *str, char *cmp)
 {
-    int len = 0;
+    size_t len = 0;
     char *cpy = NULL;
 
     if (!str || !cmp)
         return NULL;
     len = get_pos_word_in_str(cmp, str);
-    if (len == -1 || !len)
+    if (len == -1 || !len) {
         return my_strcpy(str);
+    }
     cpy = malloc(sizeof(char) * (len + 1));
     if (!cpy)
         return NULL;
-    for (int a = 0; a < len; a++) {
+    for (size_t a = 0; a < len; a++) {
         cpy[a] = str[a];
     }
     cpy[len] = '\0';

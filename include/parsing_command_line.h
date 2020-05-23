@@ -54,7 +54,6 @@ command_t *prev_part);
 enum types_e assign_type(command_t *prev_part, char * const instruction);
 // !FILL COMMAND PART
 
-
 // ERROR HANDLING
 char *quote_error(char *line);
 int command_access_double_quote(char *line);
@@ -71,7 +70,6 @@ command_t *rm_useless_cmds(command_t *command);
 
 int command_access_simple_quote(char *line);
 int command_access_double_quote(char *line);
-
 // !ERROR HANDLING
 
 // FREE

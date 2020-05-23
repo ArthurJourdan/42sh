@@ -86,6 +86,8 @@ SRC		=	${SRCDIR}main.c								\
 			$(ENV)disp_env.c							\
 			$(ENV)env_management.c						\
 			\
+			$(ENV)change_dol_var_env.c					\
+			\
 			$(BUILTIN)exec_built_ins.c					\
 			$(BUILTIN)built_in_error_handling.c			\
 			\
@@ -163,12 +165,12 @@ lib:
 			done
 
 pre_building:
-			@$(ECHO) $(BOLD) $(YELLOW) Built $(CYAN)$(NAME) $(WHITE) "\t$(CFLAGS)" $(DEFAULT)
+			@$(ECHO) '\n' $(BOLD) $(YELLOW) Built $(CYAN)$(NAME) $(WHITE) "\t$(CFLAGS)" $(DEFAULT)
 
 $(NAME):	lib  $(OBJ) pre_building
 			@$(ECHO)
 			@gcc -o  $(NAME) $(OBJ) $(LDFLAGS) \
-			&& $(ECHO) $(BOLD) $(GREEN)"-> BUILD SUCCESS !"$(DEFAULT) || $(ECHO) $(BOLD) $(RED)"-> BUILD FAILED"$(DEFAULT)
+			&& $(ECHO) $(BOLD) $(GREEN)"-> BUILD SUCCESS !" '\n' $(DEFAULT) || $(ECHO) $(BOLD) $(RED)"-> BUILD FAILED" '\n' $(DEFAULT)
 
 clean:
 			@for MAKE_PATH in $(LIB_PATHS) ; do \
