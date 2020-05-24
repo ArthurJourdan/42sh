@@ -61,10 +61,10 @@ static command_t *check_cat(command_t *cmd, char *buff, bool *changed)
             return cmd;
         }
     }
-    cat_prev(cmd, buff, changed);
+    cmd = cat_prev(cmd, buff, changed);
     if (*(changed))
         return cmd;
-    cat_next(cmd, buff, changed);
+    cmd = cat_next(cmd, buff, changed);
     return cmd;
 }
 
