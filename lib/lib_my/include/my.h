@@ -35,9 +35,6 @@
 #undef EXIT_FAILURE
 #define EXIT_FAILURE (84)
 
-#undef PIPE_BUF
-#define PIPE_BUF (10000000000000000000000000)
-
 // ATTRIBUTES
 #define N_U __attribute__((unused))
 #define UNUSED __attribute__((unused))

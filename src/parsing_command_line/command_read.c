@@ -51,16 +51,26 @@ char *command_read(void)
     return line;
 }
 
+static void print_color_folder(char *pwd)
+{
+    char *color = my_strcpy("\e[90m");
+
+    color[3] = ((getpid()) % 8) + 48;
+    my_dprintf(STDOUT_FILENO, "%s", color);
+    my_dprintf(STDOUT_FILENO, "%s", pwd);
+    my_dprintf(STDOUT_FILENO, "> %s", DEFAULT);
+    free(color);
+}
+
 void print_prompt(void)
 {
     char *pwd = NULL;
 
-    if (isatty(STDIN_FILENO) == 1) {
-        pwd = getcwd(pwd, 0);
-        if (pwd) {
-            my_dprintf(1, "%s%s> %s", YELLOW, pwd, DEFAULT);
-            free(pwd);
-        } else
-            my_dprintf(1, "~> ");
-    }
+    if (isatty(STDIN_FILENO) != 1)
+        return;
+    pwd = getcwd(pwd, 0);
+    if (pwd) {
+        print_color_folder(pwd);
+    } else
+        my_dprintf(STDOUT_FILENO, "%s~> %s", YELLOW, DEFAULT);
 }
