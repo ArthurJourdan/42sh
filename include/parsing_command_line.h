@@ -65,6 +65,7 @@ bool is_separator(command_t *tmp);
 bool is_separator_beg_end(command_t *tmp);
 bool pipe_with_file(command_t *tmp);
 bool missing_file(command_t *tmp);
+bool ambiguous_redirect(command_t *tmp);
 
 command_t *rm_useless_cmds(command_t *command);
 

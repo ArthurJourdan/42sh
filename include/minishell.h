@@ -13,7 +13,7 @@
 #include "parsing_command_line.h"
 #include "built_in.h"
 
-#define BONUS (true)
+#define BONUS (false)
 
 #define OUT 0
 #define IN 1
