@@ -71,6 +71,7 @@ SRC		=	${SRCDIR}main.c								\
 			\
 			$(PARSE)command_read.c						\
 			$(PARSE)quote_error.c						\
+			$(PARSE)pars_line_supp_quote.c				\
 			$(PARSE)command_quotes.c					\
 			$(PARSE)my_command_parser.c					\
 			$(PARSE)fill_cmd_part.c						\
