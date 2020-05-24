@@ -77,9 +77,8 @@ bool parsing_error(command_t *command)
             return true;
         if (!separator_error(tmp))
             return parsing_error_msg(0);
-        if (!pipe_with_file(tmp)) {
+        if (!pipe_with_file(tmp))
             return parsing_error_msg(1);
-        }
         tmp = tmp->next;
     }
     if (is_separator_beg_end(tmp))

@@ -17,7 +17,7 @@ void create_fd_redirect(char *line, char **fp)
     char c = '\n';
 
     fd = open(fp[0], O_CREAT | O_APPEND | O_RDWR, \
-              S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
     while (1) {
         putchar('?');
         line = command_read();
