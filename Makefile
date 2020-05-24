@@ -118,6 +118,7 @@ SRC		=	${SRCDIR}main.c								\
 			$(BACKTICK)substitute_backticks.c			\
 			$(BACKTICK)get_cmd_backtick.c				\
 			$(BACKTICK)add_cmd_from_backtick.c			\
+			$(BACKTICK)concatenate_neighboor.c			\
 			\
 			$(COMMAND)command_exists.c					\
 			$(COMMAND)launch_command_parser.c			\

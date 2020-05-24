@@ -12,18 +12,17 @@
 #include "minishell.h"
 #include "built_in.h"
 
+
 static command_t *get_new_command(command_t *cmd, char *buff)
 {
-    if (cmd->prev) {
-        if (cmd->prev->type == COMMAND || cmd->prev->type == BUILT_IN) {
-            cmd = cmd->prev;
-            free_one_command(cmd->next);
-            cmd->instruction = my_strcat(cmd->instruction, buff, false, false);
-            return cmd;
-        }
+    bool changed = false;
+
+    cmd = concatenate_neighboor(cmd, buff, &changed);
+    if (!changed) {
+        cmd->type = COMMAND;
+        cmd->instruction = my_strcpy(buff);
+        return cmd;
     }
-    cmd->type = COMMAND;
-    cmd->instruction = my_strcpy(buff);
     return cmd;
 }
 

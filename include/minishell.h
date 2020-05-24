@@ -50,6 +50,8 @@ command_t *add_cmd_from_backtick(command_t *command, int fd);
 command_t *get_cmd_backtick(command_t *command);
 command_t *remove_cmd_backtick(command_t *command);
 
+command_t *concatenate_neighboor(command_t *cmd, char *buff, bool *changed);
+
 // !BACKTICKS
 
 bool command_exec(command_t *command, memory_t *env_mem);
