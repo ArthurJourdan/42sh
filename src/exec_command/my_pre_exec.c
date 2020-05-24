@@ -72,7 +72,7 @@ static int init_pipes(command_t *tmp, memory_t *env_mem)
     return status;
 }
 
-static void launch_separators(command_t *cmd, memory_t *env_mem)
+static void launch_separators(command_t *cmd, memory_t *env_m)
 {
     command_t *tmp = cmd;
     int status = 0;
@@ -84,8 +84,9 @@ static void launch_separators(command_t *cmd, memory_t *env_mem)
         }
         if (tmp->type == COMMAND || tmp->type == BUILT_IN) {
             tmp->instruction = check_fill_aliases(tmp->instruction, \
-            env_mem->aliases);
-            status = init_pipes(tmp, env_mem);
+            env_m->aliases);
+            cmd->instruction = change_dol_var_env(cmd->instruction, env_m->env);
+            status = init_pipes(tmp, env_m);
         }
         tmp = tmp->next;
     }
