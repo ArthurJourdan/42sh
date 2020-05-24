@@ -53,7 +53,7 @@ char *pars_line_supp_quotes(char *line)
     int i;
     int h = 0;
 
-    for (i = 0; line[i] != '\'' && line[i] != '\"' && line[i] != '`'; i++);
+    for (i = 0; line[i] != '\'' && line[i] != '\"'; i++);
     dest = line[i];
     str = malloc(sizeof(char) * ((my_strlen(line) - 1)));
     for (int i = 0; line[i] != '\0'; i++) {
