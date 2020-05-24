@@ -42,7 +42,7 @@ static bool prompt_loop(memory_t *env_mem)
             continue;
         launch_command_parser(line, env_mem);
         if (line)
-            free(line);
+            free_char_to_null(line);
     }
     return true;
 }

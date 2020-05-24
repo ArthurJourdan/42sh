@@ -22,6 +22,18 @@ static char *get_one_line(void)
     return line;
 }
 
+static char *fill_quote(char *line)
+{
+    char *tmp = NULL;
+    char *new_line = NULL;
+
+    tmp = get_one_line();
+    if (!tmp)
+        return NULL;
+    new_line = my_strcat(line, tmp, true, true);
+    return new_line;
+}
+
 char *command_read(void)
 {
     char *line = NULL;
@@ -33,8 +45,8 @@ char *command_read(void)
         return my_strcpy("exit\n");
     }
     if (BONUS) {
-        while (!are_quotes_filled(line))
-            line = my_strcat(line, get_one_line(), true, true);
+        while (line && !are_quotes_filled(line))
+            line = fill_quote(line);
     }
     return line;
 }
@@ -49,6 +61,6 @@ void print_prompt(void)
             my_dprintf(1, "%s%s> %s", YELLOW, pwd, DEFAULT);
             free(pwd);
         } else
-            my_dprintf(1, "~>");
+            my_dprintf(1, "~> ");
     }
 }

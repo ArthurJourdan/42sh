@@ -11,7 +11,7 @@
 #include "built_in.h"
 #include "minishell.h"
 
-static char * const ERR_BUILTIN = " is shell a built-in\n";
+static char * const ERR_BUILTIN = " is a shell built-in\n";
 static char * const ERR_ALIAS = " is aliased to ";
 
 static bool is_where_built_in(char *command)
