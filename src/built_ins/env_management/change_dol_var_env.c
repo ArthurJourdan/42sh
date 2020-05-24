@@ -43,8 +43,8 @@ static char *get_substitute_for_replace(char *name_var, char **env)
     char *var = find_var_in_env(name_var, env);
 
     if (!var) {
-        free_char_to_null(name_var);
         my_dprintf(STDERR_FILENO, "%s: Undefined variable.\n", name_var);
+        free_char_to_null(name_var);
         return NULL;
     }
     return var;
