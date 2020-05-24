@@ -52,7 +52,7 @@ bool missing_file(command_t *tmp)
         return false;
     if (tmp->type >= S_REDIRECT && tmp->type <= W_REDIRECT_IN) {
         if (!tmp->next)
-            return true;
+            return false;
         if (tmp->next->type >= S_REDIRECT && tmp->next->type <= W_REDIRECT_IN) {
             return false;
         }

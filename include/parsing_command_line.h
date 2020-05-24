@@ -15,6 +15,7 @@ enum types_e {
     MY_FILE,
     BUILT_IN,
     SEMICOLON,
+    BACKTICK,
     DOUBLE_E,
     DOUBLE_I,
     SIMPLE_I,
@@ -23,7 +24,6 @@ enum types_e {
     D_REDIRECT,
     D_REDIRECT_IN,
     W_REDIRECT_IN,
-    BACKTICK,
     NONE_TY = (-1)
 };
 

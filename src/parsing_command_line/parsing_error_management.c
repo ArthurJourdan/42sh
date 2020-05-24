@@ -26,16 +26,22 @@ static bool separator_error(command_t *tmp)
 {
     if (is_separator(tmp)) {
         if (is_separator_beg_end(tmp) && is_separator_beg_end(tmp->next))
-            return true;
-        if (is_separator(tmp) && is_separator_beg_end(tmp->next))
-            return true;
-        if (is_separator_beg_end(tmp) && is_separator(tmp->next))
-            return true;
+            return false;
+        if (is_separator(tmp) && is_separator_beg_end(tmp->next)) {
+            if (tmp->type != BACKTICK) {
+                return false;
+            }
         }
-    if (is_separator(tmp) && my_str_is_nothing(tmp->next->instruction)) {
-        return true;
+        if (is_separator_beg_end(tmp) && is_separator(tmp->next)) {
+            if (tmp->next->type != BACKTICK) {
+                return false;
+            }
+        }
     }
-    return false;
+    if (is_separator(tmp) && my_str_is_nothing(tmp->next->instruction)) {
+        return false;
+    }
+    return true;
 }
 
 bool parsing_error(command_t *command)
@@ -47,7 +53,7 @@ bool parsing_error(command_t *command)
     while (tmp->next) {
         if (!missing_file(tmp))
             return parsing_error_msg(2);
-        if (separator_error(tmp))
+        if (!separator_error(tmp))
             return parsing_error_msg(0);
         if (!pipe_with_file(tmp)) {
             return parsing_error_msg(1);
