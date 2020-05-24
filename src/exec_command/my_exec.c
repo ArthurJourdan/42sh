@@ -38,8 +38,8 @@ static bool exec_stantard_command(char **instructions,  memory_t *env_mem)
 
 static bool type_cmd(command_t *command, memory_t *env_mem, char **instruc)
 {
-    if (exec_built_ins(command->instruction, env_mem)) {
-        exit(EXIT_SUCCESS);
+    if (is_built_in(command->instruction) != -1) {
+        exit(exec_built_ins(command->instruction, env_mem));
     } else if (!access(instruc[0], X_OK) && my_str_has_char(instruc[0], '/')) {
         my_exec(instruc[0], instruc, env_mem->env);
         return true;
