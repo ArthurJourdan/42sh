@@ -18,7 +18,6 @@ static char *replace_with_substitute(char *line, alias_t *alias, ssize_t pos)
 
     tmp_end = my_strcpy(line + pos + len_alias);
     tmp_beg = my_str_n_cpy(line, pos);
-    // line = free_char_to_null(line);
     line = my_strcat_tot(3, tmp_beg, alias->substitute, tmp_end);
     free(tmp_end);
     free(tmp_beg);
