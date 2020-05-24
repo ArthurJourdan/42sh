@@ -75,12 +75,12 @@ static int init_pipes(command_t *tmp, memory_t *env_mem)
 static void launch_separators(command_t *cmd, memory_t *env_m)
 {
     command_t *tmp = cmd;
-    int status = 0;
+    static int status = 0;
 
     while (tmp && tmp->type != SEMICOLON) {
         if (!short_circuit_operators(&status, tmp->prev)) {
-                tmp = tmp->next;
-                continue;
+            tmp = tmp->next;
+            continue;
         }
         if (tmp->type == COMMAND || tmp->type == BUILT_IN) {
             tmp->instruction = check_fill_aliases(tmp->instruction, \
