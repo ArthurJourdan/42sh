@@ -16,8 +16,11 @@ static char *cpy_var_to_replace(char *line)
     char *name_var = NULL;
     size_t len_var = 0;
 
-    while (line[len_var] && line[len_var] > ' ')
+    while (line[len_var] && line[len_var] > ' ') {
+        if (line[len_var] == '\"' || line[len_var] == '\'')
+            break;
         len_var++;
+    }
     if (!len_var)
         return NULL;
     name_var = my_str_n_cpy(line, len_var);
