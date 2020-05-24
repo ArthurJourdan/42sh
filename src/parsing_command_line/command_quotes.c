@@ -33,7 +33,7 @@ int command_access_quote_error(char *line)
     int h = 0;
     char *stock = malloc(sizeof(char) * 4);
 
-    stock[3] = '\0';
+    stock = memset(stock, '\0', 4);
     for (int i = 0; line[i] != '\0'; i++) {
         if (line[i] == '"' || line[i] == '\'' || line[i] == '`') {
             if (error_print_quote(stock, line, i) == 1)

@@ -18,7 +18,7 @@ static command_t *get_new_command(command_t *cmd, char *buff)
         if (cmd->prev->type == COMMAND || cmd->prev->type == BUILT_IN) {
             cmd = cmd->prev;
             free_one_command(cmd->next);
-            cmd->instruction = my_strcat_tot(3, cmd->instruction, " ", buff);
+            cmd->instruction = my_strcat(cmd->instruction, buff, false, false);
             return cmd;
         }
     }
